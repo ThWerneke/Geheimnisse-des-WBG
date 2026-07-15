@@ -1,0 +1,3 @@
+Die Vergleichsbilder enthalten jeweils beide Aufnahmen in einer Datei:
+"damals" links und "heute" rechts. vergleich.html verwendet fuer jede Datei
+eigene pixelgenaue Ausschnittswerte, da die Trennkanten nicht mittig liegen.
