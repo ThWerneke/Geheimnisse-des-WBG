@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Bildarchiv — Geheimnisse des WBG</title>
+<meta name="description" content="Das Bildarchiv des Walburgisgymnasiums & der Walburgisrealschule: alte Aufnahmen, Dokumente und Fundstücke aus dem Schularchiv.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+.page-hero{
+  min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 2.5rem;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+}
+.page-hero .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;color:var(--tafel-light);margin-bottom:.8rem;}
+.page-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);}
+.page-hero p{margin-top:1rem;max-width:540px;opacity:.75;font-size:.9rem;line-height:1.6;}
+
+/* ---------- Archiv-Galerie: alte Abzüge auf Fotokarton ---------- */
+.archiv{max-width:1080px;margin:0 auto;padding:3.5rem 1.4rem 5.5rem;}
+.archiv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2.4rem 2rem;}
+.abzug{
+  cursor:pointer;background:var(--paper);border:none;padding:12px;text-align:inherit;
+  color:var(--ink);font:inherit;position:relative;
+  box-shadow:0 12px 26px rgba(0,0,0,.45);
+  transition:transform .22s ease,box-shadow .22s ease,background-color .4s ease;
+}
+.abzug:nth-child(4n+1){transform:rotate(-1.6deg);}
+.abzug:nth-child(4n+2){transform:rotate(1.2deg) translateY(8px);}
+.abzug:nth-child(4n+3){transform:rotate(-.6deg) translateY(-6px);}
+.abzug:nth-child(4n){transform:rotate(1.8deg);}
+.abzug:hover{transform:rotate(0) scale(1.04);box-shadow:0 20px 40px rgba(0,0,0,.55);z-index:5;}
+.abzug::before{ /* Klebestreifen oben */
+  content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:86px;height:22px;background:rgba(255,255,255,.32);
+  border-left:1px dashed rgba(0,0,0,.12);border-right:1px dashed rgba(0,0,0,.12);
+  box-shadow:0 2px 5px rgba(0,0,0,.18);
+}
+.abzug-bild{
+  aspect-ratio:4/3;background:linear-gradient(150deg,var(--sepia-light),var(--sepia-mid) 70%,var(--sepia-deep));
+  position:relative;overflow:hidden;
+}
+.abzug-bild img{width:100%;height:100%;display:block;object-fit:contain;}
+.abzug-bild::after{ /* Vignette + Körnung wie bei alten Abzügen */
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(25,12,0,.38) 100%),
+             radial-gradient(rgba(0,0,0,.09) 1px,transparent 1.2px);
+  background-size:auto,4px 4px;mix-blend-mode:multiply;
+}
+/* ---------- Lightbox ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:300;display:none;
+  background:rgba(10,7,4,.88);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:2rem;
+}
+.lightbox.open{display:flex;}
+.lightbox-inner{
+  position:relative;max-width:1000px;width:100%;height:min(86vh,820px);
+  background:#171310;border-radius:6px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.lightbox-bild{width:100%;height:100%;background-size:contain;background-position:center;background-repeat:no-repeat;}
+.lightbox-close{
+  position:absolute;top:1rem;right:1rem;cursor:pointer;border:1.5px solid rgba(255,255,255,.65);background:rgba(0,0,0,.7);
+  color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.75rem;
+  letter-spacing:1.5px;padding:.5rem 1.1rem;border-radius:20px;
+}
+.lightbox-close:hover{background:#000;}
+@media (max-width:720px){
+  .lightbox{padding:1rem;}
+  .lightbox-inner{height:88vh;}
+}
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="riss-hero" data-alt="assets/img/archiv/1924-1925 1. Mittlere Reife U2.jpg">
+  <div class="riss-sticky">
+    <div class="riss-ebene riss-neu"></div>
+    <div class="riss-kante"></div>
+    <div class="riss-wrap"><div class="riss-canvas"><div class="riss-ebene riss-alt"></div></div></div>
+    <div class="riss-inhalt">
+      <div class="eyebrow">AKTE 04 · ARCHIV</div>
+      <h1>Das Bildarchiv</h1>
+      <p>Fundstücke aus dem Schularchiv: alte Aufnahmen, Dokumente und Erinnerungsstücke. Klickt ein Bild an für die Großansicht — die Sammlung wächst nach und nach.</p>
+    </div>
+    <div class="scroll-hint">↓ SCROLLEN</div>
+  </div>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main class="archiv">
+  <div class="archiv-grid" id="archiv-grid"></div>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lightbox-inner">
+    <div class="lightbox-bild" id="lb-bild"></div>
+    <button class="lightbox-close" id="lb-close">SCHLIESSEN ✕</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script>
+var ARCHIV = [
+  'assets/img/archiv/1924-1925 1. Mittlere Reife U2.jpg',
+  'assets/img/archiv/1928-1929 U2.jpg'
+];
+
+for (var i = 1; i <= 36; i++) {
+  var nummer = String(i).padStart(4, '0');
+  var basis = 'assets/img/archiv/IMG_20220530_' + nummer;
+  ARCHIV.push(basis + '.jpg', basis + '-2.jpg');
+}
+
+for (var j = 7; j <= 10; j++) {
+  ARCHIV.push('assets/img/archiv/IMG_20231028_' + String(j).padStart(4, '0') + '.jpg');
+}
+
+[1,2,3,4,5,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,24,25,27,28,29,31,44,45,46,47,48,49,50,51,52,54].forEach(function(n){
+  ARCHIV.push('assets/img/archiv/IMG_20240313_' + String(n).padStart(4, '0') + '.jpg');
+});
+
+var grid = document.getElementById('archiv-grid');
+ARCHIV.forEach(function(bild, i){
+  var el = document.createElement('button');
+  el.className = 'abzug';
+  el.setAttribute('aria-label', 'Archivbild ' + (i + 1) + ' — Großansicht öffnen');
+  el.innerHTML = '<div class="abzug-bild"><img src="' + bild + '" alt="" loading="lazy" decoding="async"></div>';
+  el.addEventListener('click', function(){ openLightbox(i); });
+  grid.appendChild(el);
+});
+
+var lightbox = document.getElementById('lightbox');
+function openLightbox(i){
+  document.getElementById('lb-bild').style.backgroundImage = 'url("' + ARCHIV[i] + '")';
+  lightbox.classList.add('open');
+}
+document.getElementById('lb-close').addEventListener('click', function(){ lightbox.classList.remove('open'); });
+lightbox.addEventListener('click', function(e){ if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lightbox.classList.remove('open'); });
+</script>
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>

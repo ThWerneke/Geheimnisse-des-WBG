@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das WBG zur NS-Zeit — Geheimnisse des WBG</title>
+<meta name="description" content="Die Geschichte des Walburgisgymnasiums & der Walburgisrealschule in der Zeit des Nationalsozialismus — Comic, Texte und Fotos.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+/* ==================================================================
+   Diese Seite weicht bewusst vom Archiv-Design ab:
+   Graustufen, viel Ruhe, keine verspielten Effekte.
+   Das Thema verlangt einen eigenen, ernsten Ton.
+   ================================================================== */
+html{background:#F4F3F1;}
+body.ns{background:#F4F3F1;color:#1C1C1B;}
+body.ns ::selection{background:#1C1C1B;color:#F4F3F1;}
+body.ns .site-header{background:linear-gradient(180deg,rgba(244,243,241,.96),rgba(244,243,241,.85) 75%,transparent);}
+body.ns .brand{color:#1C1C1B;}
+body.ns .brand-text{text-shadow:none;}
+body.ns .brand-logo{box-shadow:0 2px 8px rgba(0,0,0,.18);}
+body.ns .brand-logo img{filter:grayscale(1);}
+body.ns .crumbs a{color:#1C1C1B;background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.2);}
+body.ns .crumbs a:hover{background:rgba(0,0,0,.12);}
+body.ns .site-footer{background:#E7E5E2;border-top:1px solid rgba(0,0,0,.08);}
+body.ns .site-footer p{color:#1C1C1B;}
+body.ns .footer-logo{filter:grayscale(1);box-shadow:0 4px 14px rgba(0,0,0,.15);}
+body.ns .preview-badge{background:rgba(28,28,27,.85);}
+
+.ns-hero{
+  max-width:720px;margin:0 auto;padding:9rem 1.5rem 3.5rem;text-align:left;
+}
+.ns-hero .eyebrow{font-size:.7rem;letter-spacing:3px;color:#6E6E6A;margin-bottom:1.2rem;}
+.ns-hero h1{font-weight:700;font-size:clamp(1.9rem,5vw,3rem);line-height:1.2;}
+.ns-hero .intro{margin-top:1.4rem;font-size:1.02rem;line-height:1.75;color:#3A3A38;max-width:600px;}
+.ns-rule{max-width:720px;margin:0 auto;padding:0 1.5rem;}
+.ns-rule hr{border:none;border-top:1.5px solid #1C1C1B;opacity:.2;}
+
+.ns-section{max-width:720px;margin:0 auto;padding:3rem 1.5rem;}
+.ns-section h2{font-weight:700;font-size:1.35rem;margin-bottom:1.2rem;}
+.ns-section p{font-size:.95rem;line-height:1.8;color:#3A3A38;margin-bottom:1rem;}
+.ns-note{font-size:.78rem;color:#6E6E6A;border-left:3px solid #C9C7C3;padding:.6rem 0 .6rem 1rem;margin-top:1.6rem;}
+
+/* ---------- Comic-Leser: Panel für Panel ---------- */
+.comic{background:#EBE9E6;padding:3.5rem 1.5rem;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07);}
+.comic-inner{max-width:720px;margin:0 auto;}
+.comic-inner h2{font-weight:700;font-size:1.35rem;margin-bottom:.4rem;}
+.comic-inner .comic-sub{font-size:.85rem;color:#6E6E6A;margin-bottom:1.8rem;}
+.panel-stage{
+  background:#fff;border:1.5px solid #1C1C1B;aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  background-size:contain;background-position:center;background-repeat:no-repeat;
+}
+.panel-stage .platzhalter{color:#9B9995;font-size:.75rem;letter-spacing:1.5px;text-align:center;padding:1.5rem;}
+.comic-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;gap:1rem;}
+.comic-btn{
+  cursor:pointer;background:#1C1C1B;color:#F4F3F1;border:none;border-radius:4px;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:1px;
+  padding:.6rem 1.3rem;transition:opacity .15s ease;
+}
+.comic-btn:disabled{opacity:.25;cursor:default;}
+.comic-counter{font-variant-numeric:tabular-nums;font-size:.82rem;color:#6E6E6A;}
+.panel-text{margin-top:1.2rem;font-size:.9rem;line-height:1.7;color:#3A3A38;min-height:3em;}
+
+/* ---------- Fotoreihe ---------- */
+.ns-fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.4rem;margin-top:1.6rem;}
+.ns-foto{border:1.5px solid #1C1C1B;background:#fff;padding:8px 8px 30px;position:relative;}
+.ns-foto .bild{aspect-ratio:4/3;background:linear-gradient(150deg,#D8D6D2,#A5A3A0);display:flex;align-items:center;justify-content:center;}
+.ns-foto .bild span{font-size:.62rem;letter-spacing:1.5px;color:#6E6E6A;}
+.ns-foto figcaption{position:absolute;left:0;right:0;bottom:7px;text-align:center;font-size:.68rem;color:#3A3A38;}
+
+/* ---------- Bilder im Textfluss ---------- */
+.ns-bild{border:1.5px solid #1C1C1B;background:#fff;padding:8px;margin:1.8rem 0;}
+.ns-bild img{width:100%;display:block;}
+.ns-bild figcaption{font-size:.72rem;color:#6E6E6A;padding:.55rem .2rem .1rem;text-align:center;line-height:1.5;}
+.ns-bild.schmal{max-width:360px;margin-left:auto;margin-right:auto;}
+.ns-bild.mittel{max-width:500px;margin-left:auto;margin-right:auto;}
+.ns-autor{font-size:.75rem;color:#6E6E6A;margin-top:1.4rem;}
+.ns-quelle{font-size:.75rem;color:#6E6E6A;font-style:italic;margin-bottom:1.6rem;}
+.comic-credits{margin-top:1rem;font-size:.75rem;color:#6E6E6A;}
+</style>
+</head>
+<body class="ns">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<section class="ns-hero">
+  <div class="eyebrow">KAPITEL 05 · ERINNERN</div>
+  <h1>Das WBG in der Zeit des Nationalsozialismus</h1>
+  <p class="intro">Auch die Geschichte unserer Schule hat dunkle Kapitel. Auf dieser Seite dokumentieren wir, was zwischen 1933 und 1945 am WBG geschah — mit einem Comic, Texten und Fotografien. Wir erzählen sie, damit sie nicht vergessen wird.</p>
+</section>
+
+<div class="ns-rule"><hr></div>
+
+<section class="ns-section">
+  <h2>Das WBG zur NS-Zeit</h2>
+  <p class="ns-quelle">Quelle: eine Chronik von Reinhold Schrieck vom 11. Juni 1994 aus dem „Wochen Anzeiger der Mendener Zeitung“.</p>
+  <p>Mit dem diesjährigen 750-jährigen Jubiläum der Stadt Menden war der Startschuss mit unserem Projekt der Aufarbeitung unserer Schule gesetzt. Der Wunsch nach einem katholischen Lyzeum in Menden wurde bereits schon um die Jahrhundertwende geäußert von der St. Vincenz Gemeinde. Damals versuchte man nämlich eine Ordensgemeinschaft als Trägerin für die Schule zu finden. Denn die evangelische Kirchengemeinde hatte bereits die „Evangelische höhere Töchterschule“, wodurch die katholischen Mädchen weiterführende Schulen in anderen Städten besucht haben. Als die Idee der preußischen Regierung vorgestellt wurde, schenkten die der Idee kein Interesse. Dechant Boeddicker, ein Pfarrer der St. Vincenz Gemeinde, hat sich für die Mädchenschule eingesetzt. Im Frühjahr 1918 fand der Boeddicker die Heiligenstädter Schulschwestern, die ab sofort als Ordensgemeinschaft dienten. Jedoch sprach sich die Abteilung des Regierungspräsidenten in Arnsberg zunächst gegen die Schule aus, überwand sich jedoch und genehmigte die Schule im November 1918.</p>
+  <figure class="ns-bild">
+    <img src="assets/img/ns/boeddicker.jpg" alt="Historisches Porträt von Dechant Boeddicker im Sessel." loading="lazy">
+    <figcaption>Dechant Boeddicker, Pfarrer der St. Vincenz Gemeinde, setzte sich für die Mädchenschule ein.</figcaption>
+  </figure>
+
+  <h3>Anfänge</h3>
+  <p>Zu Beginn hatte die Schule keine Unterkunft für die Schwestern und kein Schulgebäude, wo die Schüler unterrichtet werden können. Die Schwestern haben ihre ersten Jahre in der Balver Straße 21 bei „Spiekermanns obendrauf“ gelebt. Die Schüler wurden zunächst in der Augustaschule am Kirchplatz unterrichtet. Eingeweiht wurde das Schulgebäude am 21. April 1919. Der damalige städtische Realschulleiter, Dr. Wolfschläger, äußerte sich mit dem Zitat „Das Brüderchen hat ein Schwesterchen bekommen“ zu der neueröffneten Schule. Nachdem Deutschland Elsaß-Lothringen verlor, kamen viele Schwestern aus Metz nach Menden im Jahr 1919. Unter anderem auch die Schwester Paula Hammer, welche die Leitung der jungen Schule übernommen hat. Zudem wurde auch die Mädchenschule in das bereits bestehende Lyzeum integriert.</p>
+  <figure class="ns-bild">
+    <img src="assets/img/ns/anfaenge.jpg" alt="Historische Aufnahme: Kinder und Ordensschwestern auf der Wiese vor dem Schulgebäude." loading="lazy">
+    <figcaption>Kinder mit Ordensschwestern vor dem Schulgebäude.</figcaption>
+  </figure>
+
+  <h3>Die Auflösung der Schule</h3>
+  <p>Als die Zeit des NS-Regimes begonnen hat, passte die Schule nicht mehr in das Bild der NS-Erziehung, wodurch 1938 ein Ratsbeschluss erfolgte, welcher das damalige Ende der Schule besiegelte. Die Maria-Martha-Schule zog in die freien Räume der Walburgisschule ein, was zur Folge hat, dass es in Menden nur noch eine weiterführende Mädchenschule gab.</p>
+
+  <h3>NS-Heimschule für Hitlerjungen</h3>
+  <p>Die Vorstellung, eine NS-Heimschule in der Walburgisschule für Hitlerjungen hier zu errichten, wurde glücklicherweise durch die Errichtung des Lazaretts im Jahr 1939 durchkreuzt. Durch die Errichtung des Lazaretts waren zu wenig Räume für die NS-Heimschule frei. In den letzten Kriegsmonaten fand kein Unterricht mehr statt, auch unter der Besetzung der Amerikaner und Engländer.</p>
+  <figure class="ns-bild">
+    <img src="assets/img/ns/heimschule.jpg" alt="Historische Aufnahme: Gruppe von Schülerinnen mit hellen Mützen vor dem Schulgebäude." loading="lazy">
+    <figcaption>Schülerinnen der Walburgisschule vor dem Schulgebäude.</figcaption>
+  </figure>
+
+  <h3>3. Januar 1946: Erster Schultag nach dem Krieg</h3>
+  <p>Nach der Neueröffnung der Schule war es kein Lyzeum mehr, sondern bereits ein Gymnasium, womit auch evangelische Schülerinnen zugelassen waren. Jedoch herrschten durch die hohen Schülerzahlen beengte Verhältnisse, wobei die Aula auch als Turnhalle diente. Die meisten Schüler verzeichnete die Schule im Jahr 1982 mit 1216 Schülern. Aufgrund dessen wurden unter der Schulleiterin Schwester Maria Eduarda Kempf weitere bauliche Maßnahmen geplant. Zudem finanzierte die Stadt die Umbauten und fortlaufenden Kosten der Schule mit.</p>
+  <p class="ns-autor">Text: C. A. Palhinhas Neves</p>
+</section>
+
+<section class="comic">
+  <div class="comic-inner">
+    <h2>Der Comic</h2>
+    <p class="comic-sub">Blättert Panel für Panel durch die gezeichnete Geschichte.</p>
+    <div class="panel-stage" id="panel-stage">
+      <span class="platzhalter" id="panel-platzhalter"></span>
+    </div>
+    <div class="comic-nav">
+      <button class="comic-btn" id="prev-panel">← Zurück</button>
+      <span class="comic-counter" id="panel-counter">1 / 4</span>
+      <button class="comic-btn" id="next-panel">Weiter →</button>
+    </div>
+    <p class="panel-text" id="panel-text"></p>
+    <p class="comic-credits">Sketch von: D. Stalinski, L. Schulte, L. Schippritt · Quelle: Bericht von Klemens Dümpelmann</p>
+  </div>
+</section>
+
+<section class="ns-section">
+  <h2>Hugo Dümpelmann — eine besondere Persönlichkeit</h2>
+  <figure class="ns-bild schmal">
+    <img src="assets/img/ns/hugo-duempelmann.jpg" alt="Schwarz-weißes Porträt des jungen Hugo Dümpelmann." loading="lazy">
+    <figcaption>Hugo Dümpelmann (1926–1946)</figcaption>
+  </figure>
+
+  <h3>Kindheit und Schulzeit</h3>
+  <p>Hugo Dümpelmann wurde am 21. Februar 1926 in Schwitten geboren. Er war der Sohn des Graveurmeisters Klemens Dümpelmann und seiner Frau Josefa Dümpelmann (geb. Filthaut). Gemeinsam mit seinen vier Geschwistern und einem Pflegekind wuchs er zunächst in der Friedrichstraße 10 auf. Nach der Machtübernahme der Nationalsozialisten zog die Familie in die Werlerstraße 89 um.</p>
+  <p>Seine schulische Laufbahn begann an der Schwitter Dorfschule. Im Jahr 1937 wechselte er in die Quinta der Oberschule für Jungen, dem heutigen Walramgymnasium. Bereits während seiner Schulzeit fiel Dümpelmann durch seine außergewöhnlichen Fähigkeiten auf.</p>
+  <p>Beschrieben wird er als ein außergewöhnlich begabter und zugleich bescheidener Schüler. In einem Bericht seines Vaters aus dem Jahr 1981 heißt es, Hugo habe „die uneingeschränkte Bewunderung der Mitschüler“ erlangt. Seine Mitschüler schätzten ihn nicht nur wegen seiner Intelligenz, sondern vor allem, weil er anderen bereitwillig half und seine Überlegenheit niemals zur Schau stellte. Diese Eigenschaften machten ihn zu einer angesehenen Persönlichkeit innerhalb der Schulgemeinschaft. Sein Abschlusszeugnis weist einen Notendurchschnitt von 1,9 aus und unterstreicht damit seine hervorragenden Leistungen.</p>
+  <figure class="ns-bild mittel">
+    <img src="assets/img/ns/abgangszeugnis.jpg" alt="Das handschriftlich ausgefüllte Abgangszeugnis der Städtischen Oberschule für Jungen Menden mit durchweg guten Noten." loading="lazy">
+    <figcaption>Das Abgangszeugnis der Städtischen Oberschule für Jungen Menden vom 23. März 1942.</figcaption>
+  </figure>
+
+  <h3>Hugo Dümpelmann und der katholische Jugendwiderstand</h3>
+  <p>Mit der Machtübernahme der Nationalsozialisten wurden kirchliche Jugendverbände zunehmend eingeschränkt. 1937 verbot das NS-Regime sämtliche Jugendgruppen, da Jugendliche ausschließlich in nationalsozialistischen Organisationen wie der Hitlerjugend (HJ) erzogen werden sollten. Dennoch bestand eine Untergruppe der katholischen Jugendorganisation Neudeutschland (ND) im Hintergrund weiter.</p>
+  <p>Im Jahr 1941 übernahm der erst 15-jährige Hugo Dümpelmann die Leitung der Mendener ND-Gruppe. Die Jugendlichen trafen sich heimlich im sogenannten „versteckten Meditationsraum“ über der Aula unserer Schule. Aus ihrer christlichen Überzeugung heraus lehnten sie die Ideologie des Nationalsozialismus ab und verbreiteten vereinzelt regimekritische Flugblätter und Parolen.</p>
+  <p>Die Mitglieder der ND orientierten sich an christlichen Grundwerten wie der Würde jedes Menschen, Nächstenliebe, Wahrhaftigkeit, Verantwortung und Gewissensfreiheit. Ihr Ziel war es, ihren Glauben auch unter den Bedingungen der nationalsozialistischen Diktatur zu bewahren und sich einer Ideologie zu widersetzen, die Menschen aufgrund ihrer Herkunft oder ihres Glaubens ausgrenzte und verfolgte. Der Widerstand der Gruppe war daher nicht militärischer, sondern religiös und ethisch motivierter Widerstand.</p>
+  <p>Obwohl Hugo Dümpelmann dem Nationalsozialismus kritisch gegenüberstand, wurde er aufgrund seiner Beliebtheit, seiner hervorragenden schulischen Leistungen sowie seiner Hilfsbereitschaft von der Hitlerjugend dazu gedrängt, die Funktion eines Fähnleinführers im Deutschen Jungvolk in Bösperde zu übernehmen.</p>
+  <p>Ein erster offener Konflikt mit der Hitlerjugend ereignete sich am 20. April 1941. Anlässlich einer Theateraufführung zum Geburtstag Adolf Hitlers blieb Dümpelmann der Veranstaltung aufgrund von Krankheit fern. Als ein HJ-Führer ihn zu Hause aufsuchen wollte, kam es im Treppenhaus zu einer Auseinandersetzung, bei der Hugos Vater den Eindringling die Treppe hinunterstieß.</p>
+
+  <h3>Verfolgung durch die Gestapo</h3>
+  <p>Ein bedeutendes Zeichen des katholischen Widerstands setzte die ND am 18. Oktober 1941 während der Weihe des neuen Paderborner Bischofs. Rund 5.000 Jugendliche erschienen in einheitlicher Kluft und demonstrierten damit öffentlich für das Weiterleben der verbotenen katholischen Jugendbewegung. Die nationalsozialistischen Behörden reagierten umgehend: Die Gestapo leitete Fahndungen gegen die Gruppe ein, zahlreiche Mitglieder wurden festgenommen und in das Dortmunder Gestapo-Gefängnis „Steinwache“ gebracht.</p>
+  <p>Auch in Menden überwachte eine sogenannte „Streifenwache“ der Hitlerjugend die Aktivitäten der katholischen Jugendgruppe. Als Leiter der ND-Gruppe geriet Hugo Dümpelmann besonders in den Fokus der Gestapo. Wenig später wurde er zu einem Verhör vorgeladen. Trotz seiner ausgezeichneten schulischen Leistungen wurde er anschließend vom Schulbesuch ausgeschlossen.</p>
+  <p>Die Gestapo untersagte ihm, über den Inhalt des Verhörs zu sprechen oder weitere Treffen der Jugendgruppe zu organisieren. Bei Nichteinhaltung drohten Verhaftung und weitere strafrechtliche Maßnahmen. Während der Verhöre versuchten die Beamten außerdem durch körperliche Gewalt, die Namen weiterer Gruppenmitglieder zu erfahren. Der zentrale Vorwurf lautete „Verrat am Staat und an der Volksgemeinschaft“.</p>
+  <p>Von den Nationalsozialisten wurde Hugo Dümpelmann schließlich als „Volksschädling“ eingestuft. Dadurch wurden ihm sowohl eine Berufsausbildung als auch die Aufnahme einer regulären Arbeit verwehrt.</p>
+  <figure class="ns-bild">
+    <img src="assets/img/ns/zeitungsartikel.jpg" alt="Zeitungsseite der Westfalenpost: ‚Der Fall des Hugo D. im Unterricht' mit Porträtfoto von Hugo Dümpelmann." loading="lazy">
+    <figcaption>Zeitungsbericht über den „Fall“ des Hugo Dümpelmann — Westfalenpost (Mendener Nachrichten) vom 25. Juli 1981.</figcaption>
+  </figure>
+
+  <h3>Kriegsdienst und früher Tod</h3>
+  <p>Der Fall Stalingrads am 31.01.1943 forderte die Mobilisierung aller Kräfte. Auch Dümpelmann wurde als wehrwürdig eingestuft. Gleichzeitig erhielt er die Möglichkeit, durch das Ablegen einer Prüfung an seine Schule zurückzukehren. Kurz nach seiner Wiederaufnahme wurde er jedoch als Luftwaffenhelfer nach Hagen eingezogen.</p>
+  <p>Noch vor Kriegsende folgte der reguläre Wehrdienst an der Westfront. Bei Eltville am Rhein geriet Dümpelmann in französische Kriegsgefangenschaft. Die schlechten Haftbedingungen und die anhaltende Unterernährung führten zu einer Tuberkuloseerkrankung. Ende 1945 musste er in das Lazarett in Göppingen eingeliefert werden. Dort starb er am 15. Februar 1946, nur wenige Tage vor seinem 20. Geburtstag, an den Folgen seiner Krankheit.</p>
+  <p class="ns-autor">Text: L. Kraus</p>
+  <p class="ns-note">Quellen: Bericht von Klemens Dümpelmann (19.03.1981), Wochen Anzeiger der Mendener Zeitung vom 11. Juni 1994, Westfalenpost (Mendener Nachrichten) vom 25. Juli 1981.</p>
+</section>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script>
+/* ==================================================================
+   COMIC-PANELS — hier eure gezeichneten Seiten eintragen.
+   bild: Panel in den Ordner assets/img/comic/ legen und Pfad
+   eintragen, z.B. 'assets/img/comic/panel-1.jpg' (leer = Platzhalter)
+   text: kurzer Begleittext unter dem Panel (optional)
+   ================================================================== */
+var PANELS = [
+  { bild: 'assets/img/comic/panel-01.jpg', text: 'Hugo Dümpelmann ist ein Musterschüler.' },
+  { bild: 'assets/img/comic/panel-02.jpg', text: 'Hugo Dümpelmann übernimmt die Führung der ND-Gruppe.' },
+  { bild: 'assets/img/comic/panel-03.jpg', text: 'Hugo Dümpelmann sitzt beim Verhör.' },
+  { bild: 'assets/img/comic/panel-04.jpg', text: 'Hugo Dümpelmann wird von der Schule verwiesen.' },
+  { bild: 'assets/img/comic/panel-05.jpg', text: 'Hugos Mutter findet ein T-Shirt von Hugo mit Blut: „Ist das von meinem Sohn?“' },
+  { bild: 'assets/img/comic/panel-06.jpg', text: 'Hugo Dümpelmann wird zum Wehrdienst gerufen.' },
+  { bild: 'assets/img/comic/panel-07.jpg', text: 'Hugo Dümpelmann wird von den Franzosen festgenommen.' },
+  { bild: 'assets/img/comic/panel-08.jpg', text: 'Hugo Dümpelmann ist erkrankt an Tuberkulose.' },
+  { bild: 'assets/img/comic/panel-09.jpg', text: 'Hugo Dümpelmann stirbt an Tuberkulose.' },
+  { bild: 'assets/img/comic/panel-10-erzaehlung.jpg', text: 'Die Quelle des Comics: die Erzählung von Clemens Dümpelmann über den Tag des Verhörs.' }
+];
+
+var current = 0;
+var stage = document.getElementById('panel-stage');
+var platzhalter = document.getElementById('panel-platzhalter');
+var counter = document.getElementById('panel-counter');
+var text = document.getElementById('panel-text');
+var prev = document.getElementById('prev-panel');
+var next = document.getElementById('next-panel');
+
+function showPanel(i){
+  current = i;
+  var p = PANELS[i];
+  if (p.bild){
+    stage.style.backgroundImage = 'url("' + p.bild + '")';
+    platzhalter.style.display = 'none';
+  } else {
+    stage.style.backgroundImage = '';
+    platzhalter.style.display = '';
+    platzhalter.innerHTML = '';
+  }
+  counter.textContent = (i + 1) + ' / ' + PANELS.length;
+  text.textContent = p.text || '';
+  prev.disabled = (i === 0);
+  next.disabled = (i === PANELS.length - 1);
+}
+prev.addEventListener('click', function(){ if (current > 0) showPanel(current - 1); });
+next.addEventListener('click', function(){ if (current < PANELS.length - 1) showPanel(current + 1); });
+document.addEventListener('keydown', function(e){
+  if (e.key === 'ArrowLeft' && current > 0) showPanel(current - 1);
+  if (e.key === 'ArrowRight' && current < PANELS.length - 1) showPanel(current + 1);
+});
+showPanel(0);
+</script>
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunstwerke im WBG — Geheimnisse des WBG</title>
+<meta name="description" content="Galerie der Kunstwerke im Walburgisgymnasium & der Walburgisrealschule — mit Bildern und Berichten.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+.page-hero{
+  min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 2.5rem;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+}
+.page-hero .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;color:var(--tafel-light);margin-bottom:.8rem;}
+.page-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);}
+.page-hero p{margin-top:1rem;max-width:520px;opacity:.75;font-size:.9rem;line-height:1.6;}
+
+/* ---------- Galerie ---------- */
+.galerie{max-width:1050px;margin:0 auto;padding:3.5rem 1.4rem 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2.6rem;}
+.galerie-autoren{text-align:center;font-size:.75rem;opacity:.5;padding:0 1.4rem 4.5rem;}
+.werk{cursor:pointer;background:none;border:none;text-align:inherit;color:inherit;font:inherit;padding:0;}
+.rahmen{
+  background:linear-gradient(135deg,#6b5335,#4a3823);padding:14px;
+  box-shadow:0 16px 34px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.08);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.werk:hover .rahmen{transform:translateY(-6px);box-shadow:0 26px 50px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.08);}
+.passepartout{background:var(--chalk);padding:12px;}
+.werk-bild{
+  aspect-ratio:4/3;background:linear-gradient(150deg,var(--sepia-light),var(--tafel-light));
+  background-size:cover;background-position:center;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.werk-bild span{font-size:.66rem;letter-spacing:1.5px;color:rgba(0,0,0,.55);text-align:center;padding:.8rem;}
+/* Museums-Schildchen */
+.schild{
+  margin:1rem auto 0;width:fit-content;max-width:92%;
+  background:var(--paper);color:var(--ink);border-radius:2px;
+  padding:.55rem 1rem .5rem;box-shadow:0 5px 14px rgba(0,0,0,.35);
+  text-align:center;
+}
+.schild .werk-titel{font-weight:700;font-size:.86rem;}
+.schild .werk-meta{font-family:'Special Elite',monospace;font-size:.66rem;letter-spacing:1px;opacity:.7;margin-top:.15rem;}
+
+/* ---------- Lightbox ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:300;display:none;
+  background:rgba(10,7,4,.88);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:2rem;
+}
+.lightbox.open{display:flex;}
+.lightbox-inner{
+  display:flex;gap:2rem;max-width:900px;width:100%;align-items:stretch;
+  background:var(--paper);color:var(--ink);border-radius:6px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.lightbox-bild{flex:1.2;min-height:320px;background:linear-gradient(150deg,var(--sepia-light),var(--tafel-light));display:flex;flex-direction:column;}
+/* Bei Werken mit mehreren Fotos (bilder: [...]) stapeln sich die Ansichten */
+.lightbox-bild .lb-teil{flex:1;background-size:cover;background-position:center;min-height:150px;}
+.lightbox-text{flex:1;padding:2.2rem 2.2rem 2rem;display:flex;flex-direction:column;gap:.8rem;}
+.lightbox-text h2{font-weight:700;font-size:1.4rem;}
+.lightbox-text .werk-meta{font-family:'Special Elite',monospace;font-size:.72rem;letter-spacing:1.5px;opacity:.65;}
+.lightbox-text p{font-size:.9rem;line-height:1.65;opacity:.85;flex:1;}
+.lightbox-close{
+  align-self:flex-start;cursor:pointer;border:1.5px solid var(--sepia-mid);background:none;
+  color:var(--sepia-deep);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.75rem;
+  letter-spacing:1.5px;padding:.5rem 1.1rem;border-radius:20px;
+}
+.lightbox-close:hover{background:var(--sepia-mid);color:var(--paper);}
+@media (max-width:720px){
+  .lightbox{padding:1rem;}
+  .lightbox-inner{flex-direction:column;overflow-y:auto;max-height:92vh;}
+  .lightbox-bild{min-height:200px;}
+  .lightbox-text{padding:1.5rem 1.5rem 1.4rem;}
+}
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="riss-hero" data-alt="assets/img/kunstwerke/JPEG-Bild-4BE1-A44C-F3-0.jpeg" data-neu="assets/img/kunstwerke/JPEG-Bild-4785-85F6-79-0.jpeg">
+  <div class="riss-sticky">
+    <div class="riss-ebene riss-neu"></div>
+    <div class="riss-kante"></div>
+    <div class="riss-wrap"><div class="riss-canvas"><div class="riss-ebene riss-alt"></div></div></div>
+    <div class="riss-inhalt">
+      <div class="eyebrow">AKTE 03 · KUNSTWERKE</div>
+      <h1>Kunstwerke im WBG</h1>
+      <p>Eine kleine Galerie der Kunst in und an unserer Schule. Klickt ein Werk an, um Großansicht und Bericht zu öffnen.</p>
+    </div>
+    <div class="scroll-hint">↓ SCROLLEN</div>
+  </div>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main class="galerie" id="galerie"></main>
+
+<p class="galerie-autoren">Autoren: J. Reichel &amp; M. Gorke</p>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lightbox-inner">
+    <div class="lightbox-bild" id="lb-bild" role="img"></div>
+    <div class="lightbox-text">
+      <span class="werk-meta" id="lb-meta"></span>
+      <h2 id="lb-titel"></h2>
+      <p id="lb-text"></p>
+      <button class="lightbox-close" id="lb-close">SCHLIESSEN ✕</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script>
+/* ==================================================================
+   KUNSTWERKE — hier eure Werke eintragen.
+   bild: Foto in den Ordner assets/img/kunstwerke/ legen und Pfad
+   eintragen, z.B. 'assets/img/kunstwerke/wandbild.jpg'
+   (leer = Platzhalter-Farbe)
+   ================================================================== */
+var WERKE = [
+  {
+    titel: 'Relief der Heiligen Walburga',
+    kuenstler: 'Künstler:in unbekannt',
+    jahr: 'Jahr unbekannt',
+    text: 'Über dem Eingang der Pforte befindet sich ein Relief der Heiligen Walburga. Sie breitet ihre Hände zum Empfang aus und gilt als Schutzpatronin der Walburgisschule.',
+    alt: 'Graues Steinrelief der Heiligen Walburga mit ausgebreiteten Armen über dem Eingang der Pforte.',
+    bild: 'assets/img/kunstwerke/JPEG-Bild-4BE1-A44C-F3-0.jpeg'
+  },
+  {
+    titel: 'Alles, was Odem hat',
+    kuenstler: 'Dr. Johannes Hohmann',
+    jahr: '1958',
+    text: 'Hinter der Eingangstür befindet sich dieses Mosaik. Es wurde 1958 von Dr. Johannes Hohmann erstellt. Im Mittelpunkt der Komposition kniet ein Mensch und breitet seine Arme aus, darunter steht „LOBE DEN HERREN“. Der Künstler entschied sich für die dauerhafteste Technik — das Mosaik — und griff in seinem Entwurf die alten vier Symbole der vier Elemente als Bilder der Schöpfung auf.',
+    alt: 'Farbiges Wandmosaik mit Mensch, Baum, Sonne und Tieren sowie dem Schriftzug Alles, was Odem hat, lobe den Herrn.',
+    bild: 'assets/img/kunstwerke/Image (1).jpeg'
+  },
+  {
+    titel: 'Fenster und Kreuz der Christ-König-Kapelle',
+    kuenstler: 'Ludwig Preckel (Fenster) · Josef Daniel Sommer (Kreuz)',
+    jahr: 'Jahr unbekannt',
+    text: 'Beim Betreten unserer Schulkapelle, der Christ-König-Kapelle, fällt das große, bunte Fenster besonders auf. Es wurde von Ludwig Preckel aus Köln entworfen und zeigt einen großen neunarmigen Kerzenständer. Den Schaft des Leuchters bildet der senkrechte Balken des Kreuzes, auf dem Christus als Sieger über den Tod mit goldener Krone und goldenem Lendentuch dargestellt ist. Das Kreuz wurde von Josef Daniel Sommer aus Düsseldorf entworfen.',
+    alt: 'Kruzifix vor einem farbigen Buntglasfenster im Altarraum.',
+    bild: 'assets/img/kunstwerke/JPEG-Bild-4785-85F6-79-0.jpeg'
+  },
+  {
+    titel: 'Reliquienschrein unter dem Altar',
+    kuenstler: 'Künstler:in unbekannt',
+    jahr: 'Jahr unbekannt',
+    text: 'Reliquien der heiligen Maria Magdalena Postel, der seligen Placida Viel, der seligen Martha Le Bouteiller und der heiligen Walburga (Patronin des Gymnasiums) werden unter dem Altar in unserer Schulkapelle in einem Schrein aufbewahrt. Die Nahaufnahme zeigt die kunstvolle Gittertür des Schreins mit den rot leuchtenden Glassteinen.',
+    alt: 'Altar der Schulkapelle vor buntem Glasfenster; hinter dem Metallgitter unter dem Altar liegt der Reliquienschrein. Dazu eine Nahaufnahme der Gittertür mit rot leuchtenden Glassteinen.',
+    /* Zwei Fotos: Gesamtansicht + Detail — beide erscheinen in der Großansicht */
+    bilder: ['assets/img/kunstwerke/Image (4).jpeg', 'assets/img/kunstwerke/Image (3).jpeg']
+  },
+  {
+    titel: 'Ora pro nobis',
+    kuenstler: 'Künstler:in unbekannt',
+    jahr: 'Jahr unbekannt',
+    text: 'Im hinteren Teil der Kapelle befindet sich dieses Mosaik. Auf der einen Seite steht Maria Magdalena Postel, die Gründerin des Ordens der „Schwestern der christlichen Schulen von der Barmherzigkeit“, und auf der anderen Seite ihre Nachfolgerin, die Namensgeberin des Placida-Viel-Berufskollegs, welches 1956 gegründet wurde.',
+    alt: 'Mosaik im Altarraum mit zwei Ordensschwestern und dem Schriftzug Ora pro nobis.',
+    bild: 'assets/img/kunstwerke/Image (2).jpeg'
+  },
+  {
+    titel: 'Glocke im Kapellenturm',
+    kuenstler: 'Petit & Gebr. Edelbrock',
+    jahr: '1932',
+    text: 'Die Glocke im Kapellenturm ist eine der wenigen, die der Beschlagnahme des Zweiten Weltkrieges entgangen ist. Sie wurde 1932 von Petit & Gebr. Edelbrock aus purer Bronze gegossen und hat zwei Inschriften. Die erste lautet: REGEM CUI OMNIA VIVUM VENITE ADOREMUS — das ist Latein und bedeutet übersetzt: „Kommt, lasset uns anbeten den König allen Lebens.“ Unterhalb der Inschrift befindet sich ein rundes Medaillon, auf dem steht: SANCTA MARIA MAGDALENA POSTEL O.P.N. — „Heilige Maria Magdalena Postel, bitte für uns“.',
+    alt: 'Blick nach oben in einen Backsteinturm mit einer hängenden grünen Glocke.',
+    bild: 'assets/img/kunstwerke/JPEG-Bild-4D7E-8A58-2C-0.jpeg'
+  },
+  {
+    titel: 'Bildstock der Madonna im Oberpark',
+    kuenstler: 'Franz Crone',
+    jahr: '1961',
+    text: 'Im Oberpark befindet sich ein Bildstock einer Madonna, der am 13.05.1961 angefertigt wurde. Franz Crone bekam den Auftrag, eine geeignete Darstellung der Mutter Gottes anzufertigen. Die Statue ist, sowohl Material als auch Ausführung betreffend, besonders: Sie ist aus Zement verarbeitet, welcher von der Witterung kaum angegriffen wird.',
+    alt: 'Mosaikstele mit Maria und Kind zwischen grünen Sträuchern.',
+    bild: 'assets/img/kunstwerke/Image.jpeg'
+  }
+];
+
+var galerie = document.getElementById('galerie');
+WERKE.forEach(function(w, i){
+  var el = document.createElement('button');
+  el.className = 'werk';
+  el.setAttribute('aria-label', w.titel + ' — Großansicht öffnen');
+  el.innerHTML =
+    '<div class="rahmen"><div class="passepartout">' +
+      '<div class="werk-bild" role="img"></div>' +
+    '</div></div>' +
+    '<div class="schild">' +
+      '<div class="werk-titel">' + w.titel + '</div>' +
+      '<div class="werk-meta">' + w.kuenstler + ' · ' + w.jahr + '</div>' +
+    '</div>';
+  var werkBild = el.querySelector('.werk-bild');
+  werkBild.setAttribute('aria-label', w.alt || w.titel);
+  var hauptBild = (w.bilder && w.bilder[0]) || w.bild;
+  if (hauptBild) werkBild.style.backgroundImage = 'url("' + hauptBild + '")';
+  el.addEventListener('click', function(){ openLightbox(i); });
+  galerie.appendChild(el);
+});
+
+var lightbox = document.getElementById('lightbox');
+function openLightbox(i){
+  var w = WERKE[i];
+  document.getElementById('lb-titel').textContent = w.titel;
+  document.getElementById('lb-meta').textContent = w.kuenstler + ' · ' + w.jahr;
+  document.getElementById('lb-text').textContent = w.text;
+  var lbBild = document.getElementById('lb-bild');
+  var bilder = w.bilder || (w.bild ? [w.bild] : []);
+  lbBild.innerHTML = '';
+  bilder.forEach(function(b){
+    var teil = document.createElement('div');
+    teil.className = 'lb-teil';
+    teil.style.backgroundImage = 'url("' + b + '")';
+    lbBild.appendChild(teil);
+  });
+  lbBild.setAttribute('aria-label', w.alt || w.titel);
+  lightbox.classList.add('open');
+}
+document.getElementById('lb-close').addEventListener('click', function(){ lightbox.classList.remove('open'); });
+lightbox.addEventListener('click', function(e){ if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lightbox.classList.remove('open'); });
+</script>
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>

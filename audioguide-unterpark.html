@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unterparktour — Geheimnisse des WBG</title>
+<meta name="description" content="Die Unterparktour: Hör-Rundgang durch den Unterpark des Walburgisgymnasiums & der Walburgisrealschule.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="assets/js/qrcode.min.js?v=2"></script>
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<link rel="stylesheet" href="assets/css/audioguide.css?v=2">
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="audioguide.html">← Alle Rundgänge</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="hero">
+  <div class="hero-paper"></div>
+  <div class="hero-etikett">
+    <div class="etikett-row">
+      <span>SCHULARCHIV · WALBURGIS</span>
+      <span>INV.-NR. WBG/UP</span>
+    </div>
+    <h1>Unterpark&shy;tour</h1>
+    <div class="hero-years">
+      <span class="ydamals">DAMALS</span>
+      <span class="arrow">→</span>
+      <span class="yheute">HEUTE</span>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ SCROLLEN ZUM START</div>
+</section>
+
+<!-- Die Stationen werden aus den Daten im Script unten erzeugt -->
+<div id="stations"></div>
+
+<section class="outro">
+  <p class="outro-title">Ende der Unterparktour.</p>
+  <p class="outro-sub">Wechselt zur <a href="audioguide-oberpark.html">Oberparktour</a>.</p>
+  <p class="outro-autoren">Autoren: G. Wagner &amp; F. Fröhlich</p>
+  <div class="qr-section">
+    <h2>Audio-Guide zum Scannen</h2>
+    <div class="qr-grid" id="qr-grid"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script>
+/* ==================================================================
+   STATIONEN DIESER ROUTE — neue Station = Block kopieren, anpassen.
+   HTML, QR-Code und Audio-Player entstehen automatisch daraus.
+
+   Medien: Jede Station hat einen eigenen Ordner unter
+   assets/audio/Unterpark/Unterparktour/ (z.B. 1TorWilhelmshöhe) mit
+   den Fotos und der Audio-Datei. Hier den Pfad eintragen, z.B.
+   audio: 'assets/audio/Unterpark/Unterparktour/1TorWilhelmshöhe/Station 1_4124.m4a'
+   ================================================================== */
+var ROUTE = {
+  /* Feste Adresse für die QR-Codes (GitHub Pages). Leer lassen würde
+     automatisch die Adresse verwenden, unter der die Seite läuft. */
+  baseUrl: 'https://thwerneke.github.io/Geheimnisse-des-WBG',
+  page: 'audioguide-unterpark.html',
+  stations: [
+    {
+      id: 'tor-wilhelmshoehe',
+      name: 'Tor Wilhelmshöhe',
+      title: 'Das Tor an der Wilhelmshöhe',
+      /* Zwei heutige Ansichten: der Riss blendet von der Nahaufnahme
+         zur Wiese über — deshalb tragen beide Ebenen das Label HEUTE */
+      year: 'HEUTE',
+      text: '',
+      media: {
+        old: 'assets/audio/Unterpark/Unterparktour/1TorWilhelmshöhe/1.jpeg',
+        modern: 'assets/audio/Unterpark/Unterparktour/1TorWilhelmshöhe/2.jpeg',
+        audio: 'assets/audio/Unterpark/Unterparktour/1TorWilhelmshöhe/Station 1_4124.m4a'
+      }
+    },
+    {
+      id: 'weg-durch-den-park',
+      name: 'Weg durch den Park',
+      title: 'Der Weg durch den Park',
+      year: 'FRÜHER',
+      text: '',
+      media: { old: '', modern: 'assets/audio/Unterpark/Unterparktour/2WegdurchdenPark/1.jpeg', audio: 'assets/audio/Unterpark/Unterparktour/2WegdurchdenPark/Station 2_2316.m4a' }
+    },
+    {
+      id: 'teich',
+      name: 'Teich',
+      title: 'Der Teich',
+      year: 'FRÜHER',
+      text: '',
+      media: { old: 'assets/audio/Unterpark/Unterparktour/3Teich/shared image.jpeg', modern: '', audio: 'assets/audio/Unterpark/Unterparktour/3Teich/Station 3_2651.m4a' }
+    },
+    {
+      id: 'weg-am-kindergarten',
+      name: 'Weg am Kindergarten',
+      title: 'Der Weg am Kindergarten',
+      year: 'FRÜHER',
+      text: '',
+      media: { old: '', modern: 'assets/audio/Unterpark/Unterparktour/4Weg am Kindergarten/1.jpg', audio: 'assets/audio/Unterpark/Unterparktour/4Weg am Kindergarten/Station 4_7663.m4a' }
+    },
+    {
+      id: 'kindergarten',
+      name: 'Kindergarten',
+      title: 'Der Kindergarten',
+      year: 'FRÜHER',
+      text: '',
+      media: { old: '', modern: 'assets/audio/Unterpark/Unterparktour/5Kindergarten/1.jpeg', audio: 'assets/audio/Unterpark/Unterparktour/5Kindergarten/Station 5_0788.m4a' }
+    },
+    {
+      id: 'sekretariat',
+      name: 'Sekretariat',
+      title: 'Das Sekretariat',
+      year: 'FRÜHER',
+      text: '',
+      media: { old: '', modern: 'assets/audio/Unterpark/Unterparktour/6Sekretariat/1.jpeg', audio: 'assets/audio/Unterpark/Unterparktour/6Sekretariat/Station 6_7533.m4a' }
+    }
+  ]
+};
+</script>
+<script src="assets/js/common.js?v=2"></script>
+<script src="assets/js/audioguide.js?v=3"></script>
+</body>
+</html>

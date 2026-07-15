@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das WBG als Wohnraum — Geheimnisse des WBG</title>
+<meta name="description" content="Collagen und Berichte über das Leben und Wohnen im Gebäude des Walburgisgymnasiums & der Walburgisrealschule.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+.page-hero{
+  min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 2.5rem;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+}
+.page-hero .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;color:var(--tafel-light);margin-bottom:.8rem;}
+.page-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);}
+.page-hero p{margin-top:1rem;max-width:540px;opacity:.75;font-size:.9rem;line-height:1.6;}
+
+/* ---------- Collage: Fotos wie ins Album geklebt ---------- */
+.album{max-width:1000px;margin:0 auto;padding:3.5rem 1.4rem 2rem;}
+.album h2{text-align:center;font-weight:700;font-size:1.5rem;margin-bottom:.6rem;}
+.album .lead{text-align:center;opacity:.6;font-size:.86rem;max-width:520px;margin:0 auto 3rem;}
+.collage{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:2.2rem;}
+.foto{
+  position:relative;background:var(--paper);padding:12px;
+  box-shadow:0 12px 26px rgba(0,0,0,.45);width:min(420px,92vw);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.foto:nth-child(3n+1){transform:rotate(-2.4deg);}
+.foto:nth-child(3n+2){transform:rotate(1.8deg) translateY(14px);}
+.foto:nth-child(3n){transform:rotate(-.8deg) translateY(-8px);}
+.foto:hover{transform:rotate(0) scale(1.04);box-shadow:0 20px 40px rgba(0,0,0,.55);z-index:5;}
+.foto::before,.foto::after{ /* Klebe-Ecken */
+  content:'';position:absolute;width:34px;height:34px;
+  background:rgba(236,227,208,.45);box-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+.foto::before{top:-8px;left:-8px;clip-path:polygon(0 0,100% 0,0 100%);}
+.foto::after{bottom:-8px;right:-8px;clip-path:polygon(100% 0,100% 100%,0 100%);}
+.foto-bild{
+  position:relative;overflow:hidden;
+}
+.foto-bild img{width:100%;height:auto;display:block;}
+
+/* ---------- Berichte: wie eingelegte Schreibmaschinen-Blätter ---------- */
+.berichte{max-width:760px;margin:0 auto;padding:3rem 1.4rem 5rem;display:flex;flex-direction:column;gap:2.4rem;}
+.berichte h2{text-align:center;font-weight:700;font-size:1.5rem;margin-bottom:.2rem;}
+.berichte .autoren{text-align:center;font-size:.75rem;opacity:.5;}
+.bericht{
+  background:var(--paper);color:var(--ink);padding:2.4rem 2.6rem;border-radius:3px;
+  box-shadow:0 14px 30px rgba(0,0,0,.4);position:relative;
+}
+.bericht:nth-child(odd){transform:rotate(-.4deg);}
+.bericht:nth-child(even){transform:rotate(.4deg);}
+.bericht::before{ /* Lochung wie im Ordner */
+  content:'';position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:11px;height:11px;border-radius:50%;background:var(--ink);opacity:.14;
+  box-shadow:0 -70px 0 rgba(0,0,0,.14),0 70px 0 rgba(0,0,0,.14);
+}
+.bericht h3{font-family:'Special Elite',monospace;font-weight:400;font-size:1.2rem;margin-bottom:.9rem;}
+.bericht .meta{font-size:.68rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--sepia-deep);margin-bottom:1rem;}
+.bericht p{font-size:.92rem;line-height:1.7;opacity:.85;margin-bottom:.9rem;}
+.bericht p:last-child{margin-bottom:0;}
+/* Eingeklebte Fotos in den Berichten */
+.bericht figure{margin:1.5rem 0;}
+.bericht figure img{width:100%;display:block;border:6px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.28);}
+@media (max-width:640px){ .bericht{padding:1.8rem 1.6rem 1.8rem 2.2rem;} }
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="riss-hero" data-alt="assets/img/schulleben/seite4-1.jpg" data-neu="assets/img/schulleben/seite5-1.jpg">
+  <div class="riss-sticky">
+    <div class="riss-ebene riss-neu"></div>
+    <div class="riss-kante"></div>
+    <div class="riss-wrap"><div class="riss-canvas"><div class="riss-ebene riss-alt"></div></div></div>
+    <div class="riss-inhalt">
+      <div class="eyebrow">AKTE 02 · WOHNRAUM</div>
+      <h1>Das WBG als Wohnraum</h1>
+      <p>Im WBG wurde nicht nur unterrichtet — hier wurde gewohnt und gelebt. Collagen und Berichte erzählen davon.</p>
+    </div>
+    <div class="scroll-hint">↓ SCROLLEN</div>
+  </div>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main>
+  <section class="album">
+    <h2>Collage</h2>
+    <div class="collage">
+      <figure class="foto">
+        <div class="foto-bild"><img src="assets/img/collagen/Bild.png" alt="Collage zu den Internatsregeln"></div>
+      </figure>
+      <figure class="foto">
+        <div class="foto-bild"><img src="assets/img/collagen/Bild (1).png" alt="Collage zur Kleidung der Schülerinnen"></div>
+      </figure>
+      <figure class="foto">
+        <div class="foto-bild"><img src="assets/img/collagen/Bild (2).png" alt="Collage zur Erziehung im Lyzeum St. Walburgis"></div>
+      </figure>
+      <figure class="foto">
+        <div class="foto-bild"><img src="assets/img/collagen/Bild (3).png" alt="Collage zur Hauswirtschaft in der Walburgisschule"></div>
+      </figure>
+      <figure class="foto">
+        <div class="foto-bild"><img src="assets/img/collagen/Bild (4).png" alt="Collage zum Walburgis-Internat"></div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="seam"><div class="seam-ornament"></div></div>
+
+  <section class="berichte">
+    <h2>Schulleben in der Vergangenheit</h2>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 1</div>
+      <h3>Das Untergeschoss</h3>
+      <p><strong>1931 Untergeschoss:</strong> Im Untergeschoss befanden sich zahlreiche Räume für Wäschezubereitung. Besonders sieht man die Spuren der damaligen Zeit anhand des heutigen Bücherkellers, in welchem man immer noch die Treppenstufen des damaligen Wassertretbeckens erkennt.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite1-1.jpg" alt="Links das damalige Wassertretbecken mit Treppenstufen, rechts der heutige Bücherkeller mit Regalen voller Schulbücher." loading="lazy">
+      </figure>
+      <p>Im Vergleich zu heute befanden sich die Lehrküche, die Küche und das Esszimmer auf der rechten Seite, während in der heutigen Cafeteria ein Kindergarten war.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite1-2.jpg" alt="Historische Aufnahmen: festlich gedeckter Esssaal, Lehrküche mit Schachbrettboden und ein weiterer Speiseraum." loading="lazy">
+      </figure>
+      <p><strong>1960 Untergeschoss:</strong> Zu dieser Zeit entstand ein Film- und Fernsehraum in der heutigen Cafeteria, während der Kindergarten ins heutige Oberstufenhaus zog. Außerdem wurde Musik im Untergeschoss unterrichtet.</p>
+      <p><strong>Später:</strong> 1980 verpflegte unsere Schulgemeinschaft Obdachlose mit Gerichten in der Nähe der Küchen. Außerdem wurde der Musikunterricht in den Fachtrakt verlegt und aus dem Film- und Fernsehraum wurde die Cafeteria. Heutzutage befinden sich im Untergeschoss außerdem die Büros der Realschule sowie das Sekretariat.</p>
+    </article>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 2</div>
+      <h3>Die Aula</h3>
+      <p><strong>1931 Aula:</strong> Zu dieser Zeit diente die Aula hauptsächlich als Turnhalle, die Umkleidekabinen waren im Keller und mit einer heute noch sichtbaren Klappe hinter der heutigen Bühne abgetrennt.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite2-1.jpg" alt="Oben die Aula als Turnhalle mit Sprossenwänden und Barren, unten die heutige Aula mit Stuhlreihen." loading="lazy">
+      </figure>
+      <p>Außerdem wurden dort auch Literaturvorführungen und andere Versammlungen veranstaltet, die Schule warb sowohl mit eigenen Umkleidekabinen für die Schauspielenden als auch mit einer großen Garderobe für Gäste.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite3-1.jpg" alt="Oben Turnunterricht an Sprossenwänden, unten eine historische Theateraufführung und eine heutige Bühnenszene in der Aula." loading="lazy">
+      </figure>
+      <p><strong>1960:</strong> Später wurde auch teilweise der Musikunterricht in den heutigen Stühlelagerraum verlegt. <strong>Heute:</strong> Heutzutage wird die Aula ausschließlich für Veranstaltungen, Literaturunterricht und Klassenarbeiten genutzt und der Sportunterricht findet mittlerweile in der Turnhalle statt.</p>
+    </article>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 3</div>
+      <h3>Erdgeschoss – 200ter-Flur</h3>
+      <p><strong>Erdgeschoss – 200ter-Flur:</strong> 1931 befanden sich in diesem Geschoss die Unterrichtsräume der Unter- und Mittelstufe. Neben den Türen wurden Vitrinen zum Ausstellen von Schülerwerken angebracht. Die sich dort befindenden Klassenräume hatten blaue Bänke.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite4-1.jpg" alt="Historisches Klassenzimmer: Schülerinnen sitzen an Holzbänken vor großen Fenstern." loading="lazy">
+      </figure>
+      <p>Außerdem gab es hier ein Konferenzzimmer und die Fachräume, also ein Bio-, ein Physik- und ein Chemieraum für Experimente, sowie ein Sammlungsraum. Der Eingang und somit auch das Sekretariat befanden sich auf dieser Etage, da außen am Gebäude eine Treppe direkt zu dieser Etage führte. Auch heute sieht man noch den bunten Fußboden und die Vitrinen, beide denkmalgeschützt. Es sind hier heute Klassen- und Kursräume untergebracht. Die Fachräume befinden sich heute im zwischenzeitlich gebauten Fachtrakt.</p>
+    </article>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 4</div>
+      <h3>1. Obergeschoss – 300ter-Flur</h3>
+      <p><strong>1. Obergeschoss – 300ter-Flur:</strong> 1931 befand sich hier ein Handarbeitszimmer, ein Zeichenzimmer, ein Kartenraum, ein Aufenthalts- bzw. Wohnraum für die Schülerinnen und ihr Esssaal. Zu diesem und zur Teeküche führte ein Lastenaufzug. Außerdem fand man in dieser Etage das Lehrerzimmer, ein Krankenzimmer und einen Schlafsaal für einige der Schwestern.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite5-1.jpg" alt="Heutiger Flur mit denkmalgeschütztem, rot-weiß gemustertem Fliesenboden und Blick in die Klassenräume." loading="lazy">
+      </figure>
+      <p>Die Walburgisschule war bis 1975 eine reine Mädchenschule, sie umfasste ein Mädchengymnasium für ein wissenschaftliches Abitur, eine Frauenoberschule mit vertiefenden Fächern der Hauswirtschaft und eine Haushaltungsschule. Zu dem praktischen Teil der Ausbildung an der Haushaltungsschule gehörte sogar eine Säuglingsstation. Die erste Schulleiterin war Schwester Paula Hammer, welche die Schule in den 1930er Jahren leitete. 1960 wurde der Ess- und Wohnraum der Schülerinnen umgewidmet für die Ordensschwestern.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite6-1.jpg" alt="Oben der damalige Aufenthaltsraum und der Esssaal der Schülerinnen, unten ein heutiger Klassenraum mit karierten Vorhängen." loading="lazy">
+      </figure>
+      <p>Heute sind im 1. Obergeschoss Klassenräume, ein Kunstraum und das Lehrerzimmer.</p>
+    </article>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 5</div>
+      <h3>2. Obergeschoss – 400ter-Flur</h3>
+      <p><strong>2. Obergeschoss – 400ter-Flur:</strong> 1931 waren hier die Schlafräume der Ordensschwestern mit Gemeinschaftsbädern und anderen Aktivitätsräumen.</p>
+      <p>Vermutlich wurde kurz darauf der Flur zweigeteilt, wobei die eine Hälfte die Schlafräume der Schwestern und die andere Hälfte die Schlafräume der Internatsschülerinnen, der sogenannten Pensionärinnen, beinhaltete. 1960 waren es dann insgesamt Schlafräume für die Schülerinnen.</p>
+      <p>Heute sind im 2. Obergeschoss Klassenräume untergebracht.</p>
+    </article>
+
+    <article class="bericht">
+      <div class="meta">Schulleben in der Vergangenheit · Rundgang 6</div>
+      <h3>3. Obergeschoss – 500ter-Flur</h3>
+      <p><strong>3. Obergeschoss – 500ter-Flur:</strong> 1931 wurden hier Schlafsäle und Schlafräume für die Internatsschülerinnen, der sogenannten Pensionärinnen, eingerichtet. Als später auch Schlafräume im 2. Obergeschoss eingerichtet wurden, kamen hier die Pensionärinnen der Mittel- und Oberstufe unter. Neben 4 Klavierzimmern und dem Gemeinschaftsbad befanden sich auf diesem Flur insgesamt 12 Schlafzimmer, in denen zu zweit oder zu dritt geschlafen wurde. Diese waren in leuchtenden Farben, rot, gelb, rosa oder blau, mit gelben Möbeln eingerichtet.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite7-1.jpg" alt="Historisches Gemeinschaftsbad mit gefliesten Waschbecken, Hockern und Duschkabinen mit Vorhängen." loading="lazy">
+      </figure>
+      <p>Die Zimmertüren hatten Glasfenster, damit bei Nachtruhe kontrolliert werden konnte, ob bei den Schülerinnen noch Licht brannte. Allgemein gab es klare und teils strenge Regeln. Es durfte kein Schmuck getragen werden, die Unterstufe musste über die tägliche Kleidung eine Schürze tragen, sonntags eine weiße Schürze. Bei Hausarbeiten mussten auch die älteren Schülerinnen eine Schürze tragen. Elternbesuche durften nur am ersten Sonntag im Monat erfolgen, während des Unterrichts waren Besuche oder Telefonate nicht erlaubt. Briefe an die Eltern durften nur sonntags geschrieben werden, und Briefe an andere Personen wurden bei Schülerinnen bis zur 8. Klasse kontrolliert. Süßigkeiten durften nur am Namenstag, Geburtstag und Nikolaustag verschickt werden.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite8-1.jpg" alt="Oben ein Schlafzimmer der Pensionärinnen mit drei Betten und Kruzifix, unten vier Schülerinnen beim Spielen an einem Tisch." loading="lazy">
+      </figure>
+      <p>1960 wurden hier die Schlafräume und das Gemeinschaftsbad der Schwestern eingerichtet, außerdem befand sich hier eine Teeküche als Ergänzung zur Hauptküche im Keller. In den 1970er Jahren war die Zahl der im Gebäude lebenden Schwestern mit rund 30 am größten. Sie unterrichteten Schüler und vermittelten christliche Werte.</p>
+      <figure>
+        <img src="assets/img/schulleben/seite9-1.jpg" alt="Oben ein erhaltenes Badezimmer mit gefliester Wanne, unten ein heutiger Aufenthaltsraum mit Sofa und Sesseln." loading="lazy">
+      </figure>
+      <p>Heute sind hier Arbeitsräume für die Oberstufe, Arbeits- und Ruheräume für die Lehrkräfte und einige Büros untergebracht.</p>
+    </article>
+
+    <p class="autoren">Autoren: M. Schönemann &amp; S. Niggemeier</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>

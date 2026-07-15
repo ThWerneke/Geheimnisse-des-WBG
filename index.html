@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geheimnisse des WBG — Walburgisgymnasium &amp; Realschule</title>
+<meta name="description" content="Geheimnisse des WBG — Projektwoche am Walburgisgymnasium & der Walburgisrealschule: Audioguides, Geschichte und Kunst rund um das WBG.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+/* ---------- Hero der Hauptseite ---------- */
+.hub-hero{
+  min-height:72vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+  transition:background .4s ease;padding:5.5rem 1.5rem 4rem;
+}
+.hub-hero-paper{
+  position:absolute;inset:0;
+  background-image:linear-gradient(135deg,var(--sepia-light) 0%,var(--sepia-mid) 55%,var(--sepia-deep) 100%);
+  clip-path:polygon(0 0,100% 0,100% 22%,70% 34%,78% 40%,55% 52%,63% 58%,34% 72%,42% 79%,12% 92%,0 80%);
+  opacity:.92;transition:background-image .4s ease;
+}
+.hub-hero-paper::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(0,0,0,.12) 1px,transparent 1.2px);
+  background-size:4px 4px;mix-blend-mode:multiply;opacity:.5;
+}
+.hub-hero-content{position:relative;z-index:8;text-shadow:0 3px 18px rgba(0,0,0,.55);}
+.hub-eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;opacity:.8;margin-bottom:.9rem;color:var(--tafel-light);}
+.hub-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.9rem,5.5vw,3.6rem);line-height:1.25;letter-spacing:1px;}
+.hub-sub{margin-top:1.2rem;font-size:.9rem;opacity:.8;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;}
+
+/* ---------- Themen-Auswahl: Archivkarten ---------- */
+.themen{max-width:1100px;margin:0 auto;padding:4.5rem 1.4rem 5.5rem;}
+.themen-head{text-align:center;margin-bottom:3rem;}
+.themen-head h2{font-weight:700;font-size:clamp(1.4rem,3vw,2rem);}
+.themen-head p{opacity:.6;font-size:.88rem;margin-top:.5rem;}
+.themen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;}
+@media (max-width:760px){ .themen-grid{grid-template-columns:1fr;} }
+
+.acard{
+  position:relative;display:flex;flex-direction:column;gap:.7rem;
+  background:var(--paper);color:var(--ink);border-radius:6px;
+  padding:2rem 1.9rem 1.7rem;margin-top:1.1rem;text-decoration:none;
+  box-shadow:0 14px 30px rgba(0,0,0,.4);
+  transition:transform .22s ease,box-shadow .22s ease,background-color .4s ease;
+}
+.acard:nth-child(odd){transform:rotate(-.5deg);}
+.acard:nth-child(even){transform:rotate(.4deg);}
+.acard:hover{transform:rotate(0deg) translateY(-7px);box-shadow:0 24px 46px rgba(0,0,0,.5);}
+/* Reiter wie an einer Aktenmappe */
+.acard-tab{
+  position:absolute;top:-1.05rem;left:1.6rem;
+  background:var(--sepia-mid);color:var(--paper);
+  font-family:'Special Elite',monospace;font-size:.66rem;letter-spacing:2px;
+  padding:.32rem .9rem .28rem;border-radius:5px 5px 0 0;
+  box-shadow:0 -2px 6px rgba(0,0,0,.15);
+}
+/* SMMP-Bildmarke als blasser Archivstempel */
+.acard::after{
+  content:'';position:absolute;right:1.1rem;bottom:1rem;width:76px;height:78px;
+  background:url('assets/img/smmp-bildmarke.jpg') center/contain no-repeat;
+  filter:grayscale(1);opacity:.13;mix-blend-mode:multiply;
+  transform:rotate(-8deg);pointer-events:none;
+}
+.acard-icon{width:44px;height:44px;color:var(--sepia-deep);opacity:.85;}
+.acard-icon svg{width:100%;height:100%;}
+.acard h3{font-weight:700;font-size:1.25rem;line-height:1.3;}
+.acard p{font-size:.86rem;line-height:1.55;opacity:.75;flex:1;}
+.acard-cta{
+  align-self:flex-start;font-weight:600;font-size:.78rem;letter-spacing:1.5px;
+  color:var(--rose-deep);margin-top:.3rem;
+}
+.acard:hover .acard-cta{text-decoration:underline;}
+
+/* Audioguide-Karte: volle Breite, mit zwei Routen-Knöpfen */
+.acard.featured{grid-column:1 / -1;}
+/* Zentrierte Karte über die volle Reihe (Bildarchiv, Zeitstrahl) */
+.acard-center{grid-column:1 / -1;max-width:560px;width:100%;justify-self:center;}
+.route-btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.4rem;}
+.route-btn{
+  display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
+  font-weight:600;font-size:.82rem;letter-spacing:1px;color:var(--paper);
+  background:var(--tafel);padding:.62rem 1.25rem;border-radius:24px;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.route-btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,.3);}
+.route-btn .dot{width:8px;height:8px;border-radius:50%;background:var(--rose);}
+
+/* NS-Zeit-Karte: bewusst schlicht und ernst */
+.acard.is-serious{background:#E4E2DE;}
+.acard.is-serious .acard-tab{background:#4A4A48;}
+.acard.is-serious .acard-icon{color:#333;}
+.acard.is-serious .acard-cta{color:#333;}
+.acard.is-serious::after{display:none;}
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="hub-hero">
+  <div class="hub-hero-paper"></div>
+  <div class="hub-hero-content">
+    <div class="hub-eyebrow">SCHULARCHIV · WALBURGIS</div>
+    <h1>Geheimnisse<br>des WBG</h1>
+    <p class="hub-sub">Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule — lüftet die Geheimnisse unseres Schulgeländes, seiner Geschichte und seiner Kunst.</p>
+  </div>
+  <div class="scroll-hint">↓ THEMA AUSWÄHLEN</div>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main class="themen">
+  <div class="themen-head">
+    <h2>Wählt ein Thema aus dem Archiv</h2>
+    <p>Sieben Akten, sieben Geheimnisse des WBG.</p>
+  </div>
+
+  <div class="themen-grid">
+
+    <div class="acard featured">
+      <span class="acard-tab">Akte 01</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/></svg>
+      </div>
+      <h3>Audioguides über das Gelände</h3>
+      <p>Zwei Hör-Rundgänge führen über unser Schulgelände: alte Fotos reißen auf und geben den Blick auf heute frei — vor Ort per QR-Code, hier zum Anhören.</p>
+      <div class="route-btns">
+        <a class="route-btn" href="audioguide-oberpark.html"><span class="dot"></span>Oberparktour</a>
+        <a class="route-btn" href="audioguide-unterpark.html"><span class="dot"></span>Unterparktour</a>
+        <a class="route-btn" href="audioguide.html" style="background:transparent;color:var(--sepia-deep);border:1.5px solid var(--sepia-mid);">Übersicht der Rundgänge</a>
+      </div>
+    </div>
+
+    <a class="acard" href="wohnraum.html">
+      <span class="acard-tab">Akte 02</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg>
+      </div>
+      <h3>Das WBG als Wohnraum</h3>
+      <p>Hier wurde nicht nur gelernt, sondern auch gelebt. Collagen und Berichte erzählen vom Alltag im Haus.</p>
+      <span class="acard-cta">Akte öffnen →</span>
+    </a>
+
+    <a class="acard" href="kunstwerke.html">
+      <span class="acard-tab">Akte 03</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="m6 14 4-5 3 4 2-2 3 3"/><circle cx="8.5" cy="8.5" r="1.3"/></svg>
+      </div>
+      <h3>Kunstwerke im WBG</h3>
+      <p>Eine kleine Galerie: Bilder und Berichte zu den Kunstwerken in und an unserer Schule.</p>
+      <span class="acard-cta">Galerie öffnen →</span>
+    </a>
+
+    <a class="acard acard-center" href="archiv.html">
+      <span class="acard-tab">Akte 04</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/></svg>
+      </div>
+      <h3>Das Bildarchiv</h3>
+      <p>Fundstücke aus dem Schularchiv: alte Aufnahmen, Dokumente und Erinnerungsstücke — die Sammlung wächst.</p>
+      <span class="acard-cta">Archiv öffnen →</span>
+    </a>
+
+    <a class="acard is-serious" href="ns-zeit.html">
+      <span class="acard-tab">Akte 05</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v15"/><path d="M3 20h18"/><path d="M9 8h6M9 12h6"/></svg>
+      </div>
+      <h3>Das WBG zur NS-Zeit</h3>
+      <p>Ein Comic, Texte und Fotos dokumentieren die Geschichte unserer Schule in der Zeit des Nationalsozialismus.</p>
+      <span class="acard-cta">Kapitel öffnen →</span>
+    </a>
+
+    <a class="acard" href="vergleich.html">
+      <span class="acard-tab">Akte 06</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M12 3v18"/><path d="m8.5 10-2 2 2 2M15.5 10l2 2-2 2"/></svg>
+      </div>
+      <h3>Damals &amp; Heute im Vergleich</h3>
+      <p>Zieht den Regler: alte und neue Aufnahmen derselben Orte, direkt übereinandergelegt.</p>
+      <span class="acard-cta">Vergleich starten →</span>
+    </a>
+
+    <a class="acard acard-center" href="zeitstrahl.html">
+      <span class="acard-tab">Akte 07</span>
+      <div class="acard-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="m15.5 8.5 3.5 3.5-3.5 3.5"/></svg>
+      </div>
+      <h3>Zeitstrahl des WBG</h3>
+      <p>Wichtige Stationen der Schulhistorie, als Zeitstrahl dargestellt — scrollt euch durch die Jahre.</p>
+      <span class="acard-cta">Zeitreise beginnen →</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>

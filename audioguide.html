@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audioguides — Geheimnisse des WBG</title>
+<meta name="description" content="Zwei Hör-Rundgänge über das Gelände des Walburgisgymnasiums & der Walburgisrealschule: Oberpark und Unterpark.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+.route-hero{
+  min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 2.5rem;position:relative;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+}
+.route-hero .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;color:var(--tafel-light);margin-bottom:.8rem;}
+.route-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);}
+.route-hero p{margin-top:1rem;max-width:520px;opacity:.75;font-size:.9rem;line-height:1.6;}
+
+.routes{max-width:1150px;margin:0 auto;padding:3.5rem 1.4rem 5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
+
+/* Routenkarte im Stil eines alten Lageplans */
+.route-card{
+  position:relative;display:flex;flex-direction:column;gap:.8rem;text-decoration:none;
+  background:var(--paper);color:var(--ink);border-radius:6px;padding:1.9rem 1.8rem 1.6rem;
+  box-shadow:0 14px 30px rgba(0,0,0,.4);transition:transform .22s ease,box-shadow .22s ease;
+}
+.route-card:nth-child(odd){transform:rotate(-.5deg);}
+.route-card:nth-child(even){transform:rotate(.5deg);}
+.route-card:hover{transform:rotate(0) translateY(-6px);box-shadow:0 24px 46px rgba(0,0,0,.5);}
+.route-card .plan{
+  height:auto;aspect-ratio:4 / 3;border:1.5px solid var(--sepia-mid);border-radius:4px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(rgba(156,111,62,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(156,111,62,.12) 1px,transparent 1px);
+  background-size:22px 22px;background-color:rgba(255,255,255,.35);
+}
+.route-card .plan svg{position:absolute;inset:0;width:100%;height:100%;}
+.route-card .plan .route-dot{
+  position:absolute;z-index:2;width:14px;height:14px;border-radius:50%;
+  background:#2F5C4C;transform:translate(-50%,-50%);pointer-events:none;
+}
+.route-card h2{font-family:'Special Elite',monospace;font-weight:400;font-size:1.35rem;}
+.route-card .meta{font-size:.72rem;letter-spacing:1.5px;color:var(--sepia-deep);text-transform:uppercase;}
+.route-card p{font-size:.86rem;line-height:1.55;opacity:.75;}
+.route-card .cta{font-weight:600;font-size:.78rem;letter-spacing:1.5px;color:var(--rose-deep);margin-top:.2rem;}
+.route-card:hover .cta{text-decoration:underline;}
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="route-hero">
+  <div class="eyebrow">AKTE 01 · AUDIOGUIDES</div>
+  <h1>Zwei Rundgänge, ein Gelände</h1>
+  <p>Wählt eine Route: Alle führen an Stationen vorbei, an denen alte Aufnahmen aufreißen und den Blick aufs Heute freigeben — mit Audiospur zu jeder Station.</p>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main class="routes">
+
+  <a class="route-card" href="audioguide-oberpark.html">
+    <div class="plan">
+      <svg viewBox="100 0 480 360" preserveAspectRatio="none" fill="none">
+        <image href="assets/img/Route Skizze/Skizze für beide/IMG_5637.JPG" x="0" y="0" width="583" height="800" preserveAspectRatio="none" opacity=".48"/>
+        <rect x="100" y="0" width="480" height="360" fill="var(--paper)" opacity=".28"/>
+        <path d="M466 328 L474 187 L402 188 L393 178 C403 159 417 136 428 121 C424 104 417 84 407 70 L432 70 L340 68 L337 28 L340 68 L213 70 L127 71 L213 70 L213 175 C213 185 210 191 204 196 C185 205 164 208 150 210 L148 250 C142 255 135 259 129 263 C117 275 110 286 109 297 L109 316 C111 323 117 328 125 330 C145 336 166 340 185 342" stroke="#8C4A52" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="478" y="331" font-family="monospace" font-size="16" fill="#5C4028">START</text>
+      </svg>
+      <span class="route-dot" style="left:76.25%;top:91.11%"></span>
+      <span class="route-dot" style="left:62.50%;top:46.11%"></span>
+      <span class="route-dot" style="left:68.96%;top:19.44%"></span>
+      <span class="route-dot" style="left:49.38%;top:7.78%"></span>
+      <span class="route-dot" style="left:5.63%;top:19.72%"></span>
+      <span class="route-dot" style="left:13.13%;top:57.50%"></span>
+      <span class="route-dot" style="left:8.13%;top:71.39%"></span>
+      <span class="route-dot" style="left:2.29%;top:87.78%"></span>
+      <span class="route-dot" style="left:17.71%;top:95.00%"></span>
+    </div>
+    <span class="meta">Route 1 · Oberpark</span>
+    <h2>Oberparktour</h2>
+    <p>Vom Oberpark über den Springbrunnen bis zum Sportplatz — der Rundgang durch den oberen Teil des Geländes.</p>
+    <span class="cta">Route starten →</span>
+  </a>
+
+  <a class="route-card" href="audioguide-unterpark.html">
+    <div class="plan">
+      <svg viewBox="0 360 583 440" preserveAspectRatio="none" fill="none">
+        <image href="assets/img/Route Skizze/Skizze für beide/IMG_5637.JPG" x="0" y="0" width="583" height="800" preserveAspectRatio="none" opacity=".48"/>
+        <rect x="0" y="360" width="583" height="440" fill="var(--paper)" opacity=".28"/>
+        <path d="M319 754 C340 741 354 718 359 690 L359 584 C358 554 346 539 322 526 L133 520 L133 607 C143 570 151 527 164 481 C173 451 184 426 192 413 L192 434 L466 437" stroke="#8C4A52" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="319" cy="754" r="8" fill="#2F5C4C"/>
+        <circle cx="359" cy="650" r="8" fill="#2F5C4C"/>
+        <circle cx="322" cy="526" r="8" fill="#2F5C4C"/>
+        <circle cx="133" cy="607" r="8" fill="#2F5C4C"/>
+        <circle cx="192" cy="413" r="8" fill="#2F5C4C"/>
+        <circle cx="466" cy="437" r="8" fill="#2F5C4C"/>
+        <text x="336" y="788" font-family="monospace" font-size="25" fill="#5C4028">START</text>
+      </svg>
+    </div>
+    <span class="meta">Route 2 · Unterpark</span>
+    <h2>Unterparktour</h2>
+    <p>Der Rundgang durch den Unterpark führt an sechs Stationen des unteren Geländes vorbei.</p>
+    <span class="cta">Route starten →</span>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>
