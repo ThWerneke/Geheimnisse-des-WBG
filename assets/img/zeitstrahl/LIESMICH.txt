@@ -1,0 +1,2 @@
+Die beiden Zeitstrahlbilder sind als zeitstrahl-01.jpeg und zeitstrahl-02.jpeg eingebunden.
+Ihre Dateipfade stehen im Datenblock ZEITPUNKTE am Ende von zeitstrahl.html.
