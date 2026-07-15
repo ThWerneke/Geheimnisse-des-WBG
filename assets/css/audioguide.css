@@ -1,0 +1,226 @@
+/* ==================================================================
+   AUDIOGUIDE — Riss-Effekt, Stationen, Audio-Player, QR-Sektion
+   Wird von audioguide-oberpark.html und audioguide-unterpark.html
+   eingebunden. Basis-Design kommt aus style.css.
+   ================================================================== */
+
+/* ---------- Hero mit Archiv-Etikett ---------- */
+.hero{
+  height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+  transition:background .4s ease;
+}
+.hero-paper{
+  position:absolute;inset:0;
+  background-image:linear-gradient(135deg,var(--sepia-light) 0%,var(--sepia-mid) 55%,var(--sepia-deep) 100%);
+  clip-path:polygon(0 0,100% 0,100% 16%,74% 28%,80% 33%,64% 41%,71% 46%,52% 55%,59% 60%,38% 69%,45% 74%,20% 83%,0 74%);
+  opacity:.92;transition:background-image .4s ease;
+}
+.hero-paper::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(0,0,0,.12) 1px,transparent 1.2px);
+  background-size:4px 4px;mix-blend-mode:multiply;opacity:.5;
+}
+/* Das Etikett: wie eine Karteikarte aus dem Schularchiv */
+.hero-etikett{
+  position:relative;z-index:8;max-width:min(560px,88vw);
+  background:var(--paper);color:var(--ink);
+  padding:2.2rem 2.6rem 1.9rem;border-radius:4px;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  transform:rotate(-1deg);
+  animation:heroIn 1s cubic-bezier(.2,.7,.3,1) both;
+  transition:background-color .4s ease,color .4s ease;
+}
+.hero-etikett::before{ /* doppelte Rahmenlinie wie auf alten Formularen */
+  content:'';position:absolute;inset:9px;border:1.5px solid var(--sepia-mid);
+  border-radius:2px;opacity:.55;pointer-events:none;
+}
+.hero-etikett::after{ /* Klebestreifen oben */
+  content:'';position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:120px;height:28px;background:rgba(255,255,255,.32);
+  border-left:1px dashed rgba(0,0,0,.12);border-right:1px dashed rgba(0,0,0,.12);
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
+}
+.etikett-row{
+  display:flex;justify-content:space-between;gap:1rem;
+  font-family:'Special Elite',monospace;font-size:.62rem;letter-spacing:2px;
+  color:var(--sepia-deep);margin-bottom:1rem;
+}
+.hero-etikett h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.6rem,4.6vw,2.7rem);line-height:1.25;letter-spacing:1px;}
+.hero-years{margin-top:1.1rem;display:flex;align-items:center;justify-content:center;gap:.9rem;}
+.hero-years .ydamals{font-family:'Special Elite',monospace;font-size:1.05rem;letter-spacing:3px;color:var(--sepia-mid);}
+.hero-years .arrow{color:var(--sepia-deep);opacity:.55;font-size:1rem;}
+.hero-years .yheute{font-weight:700;font-size:1.05rem;letter-spacing:3px;color:var(--tafel);}
+@keyframes heroIn{from{opacity:0;transform:rotate(-1deg) translateY(18px);}to{opacity:1;transform:rotate(-1deg) translateY(0);}}
+
+/* ---------- Station ---------- */
+.station-outer{position:relative;height:220vh;}
+.station-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:var(--ink);}
+/* Auf Handys verändert die Adressleiste die Viewport-Höhe — dvh verhindert
+   die Lücke, die sonst beim Scrollen unter den Fotos aufblitzt */
+@supports (height:100dvh){
+  .hero{height:100dvh;}
+  .station-sticky{height:100dvh;}
+}
+.photo-layer{position:absolute;inset:0;}
+.modern-photo{background-image:linear-gradient(160deg,var(--ink) 0%,var(--tafel) 150%);background-size:cover;background-position:center;transition:background-image .4s ease;}
+.modern-photo::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+
+/* Papierkante: liegt hinter dem alten Foto und schaut am Riss hervor.
+   Kante und Foto-Ebene ragen oben und seitlich 90px über den Bildschirm
+   hinaus — so entsteht beim Verschieben/Drehen während des Aufreißens
+   keine Lücke am oberen Rand. */
+.old-photo-edge{
+  position:absolute;inset:-90px -90px 0;z-index:2;background:var(--paper);
+  will-change:clip-path,transform;pointer-events:none;
+  filter:drop-shadow(0 14px 18px rgba(0,0,0,.5));
+  transition:background-color .4s ease;
+}
+.old-photo-wrap{position:absolute;inset:0;z-index:3;will-change:opacity;}
+.old-photo-canvas{position:absolute;inset:-90px -90px 0;will-change:clip-path,transform;}
+.old-photo{position:absolute;inset:0;background-image:linear-gradient(160deg,var(--sepia-deep) 0%,var(--sepia-mid) 48%,var(--sepia-light) 100%);background-size:cover;background-position:center;transition:background-image .4s ease;}
+.old-photo::after{ /* Körnung */
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(0,0,0,.1) 1px,transparent 1.2px);
+  background-size:4px 4px;mix-blend-mode:multiply;opacity:.45;
+}
+.old-photo::before{ /* Vignette: dunkle Ecken wie bei alten Abzügen */
+  content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse 75% 65% at 50% 45%,transparent 55%,rgba(25,12,0,.42) 100%);
+}
+.old-stains{ /* unregelmäßige Alters-Flecken */
+  position:absolute;inset:0;z-index:1;opacity:.5;mix-blend-mode:multiply;
+  background:
+    radial-gradient(ellipse 90px 60px at 82% 18%,rgba(92,58,20,.35),transparent 70%),
+    radial-gradient(ellipse 50px 70px at 12% 74%,rgba(92,58,20,.28),transparent 70%),
+    radial-gradient(ellipse 30px 26px at 68% 86%,rgba(60,35,10,.3),transparent 70%),
+    radial-gradient(ellipse 46px 20px at 34% 8%,rgba(92,58,20,.22),transparent 70%);
+}
+.photo-caption{position:absolute;top:6%;left:6%;font-size:.78rem;letter-spacing:2px;padding:.4rem .8rem;border-radius:3px;z-index:2;}
+.old-caption{font-family:'Special Elite',monospace;background:var(--caption-old-bg);color:var(--paper);transition:background-color .4s ease,color .4s ease;}
+.modern-caption{font-weight:600;background:var(--caption-modern-bg);color:var(--tafel-light);transition:background-color .4s ease,color .4s ease;}
+
+/* Papierschnipsel, die beim Aufreißen davonfliegen */
+.scrap{position:absolute;border:3px solid var(--paper);box-shadow:0 8px 16px rgba(0,0,0,.4);opacity:0;pointer-events:none;z-index:4;transition:border-color .4s ease;}
+.scrap-tex{width:100%;height:100%;background:linear-gradient(150deg,var(--sepia-light),var(--sepia-mid));}
+.s1{width:66px;height:46px;left:12%;bottom:34%;}
+.s2{width:48px;height:60px;left:52%;bottom:22%;}
+.s3{width:56px;height:38px;left:76%;bottom:38%;}
+
+/* ---------- Info-Karte ---------- */
+.station-num{
+  display:inline-block;font-family:'Special Elite',monospace;font-size:.72rem;letter-spacing:2px;
+  color:var(--sepia-light);border:1.5px dashed var(--sepia-light);padding:.25rem .65rem;
+  border-radius:3px;transform:rotate(-3deg);opacity:.9;
+  background:rgba(236,227,208,.07);
+  transition:color .4s ease,border-color .4s ease;
+}
+.content-card{
+  position:absolute;left:6%;bottom:9%;z-index:10;max-width:420px;
+  background:var(--card-bg);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-radius:14px;padding:1.7rem 1.8rem 1.6rem;box-shadow:0 20px 40px rgba(0,0,0,.4);
+  border-left:3px solid var(--tafel-light);
+  transition:transform .25s ease,box-shadow .25s ease,background-color .4s ease,border-color .4s ease;
+}
+.content-card::before{ /* Klebestreifen an der oberen Ecke */
+  content:'';position:absolute;top:-11px;right:26px;width:82px;height:24px;
+  background:rgba(236,227,208,.28);transform:rotate(3deg);
+  border-left:1px dashed rgba(255,255,255,.25);border-right:1px dashed rgba(255,255,255,.25);
+  box-shadow:0 2px 5px rgba(0,0,0,.25);pointer-events:none;
+}
+.content-card:hover{transform:translateY(-4px) rotate(0deg) !important;box-shadow:0 26px 50px rgba(0,0,0,.45);}
+.content-card.align-right{left:auto;right:6%;border-left:none;border-right:3px solid var(--tafel-light);}
+.content-card.align-right::before{right:auto;left:26px;transform:rotate(-3deg);}
+
+/* Überschrift: Schreibmaschine blendet beim Aufreißen zur modernen Schrift über */
+.content-card h2{position:relative;font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;margin:.6rem 0 .8rem;}
+.content-card h2 .t-old{font-family:'Special Elite',monospace;font-weight:400;letter-spacing:.5px;}
+.content-card h2 .t-new{
+  position:absolute;left:0;top:0;width:100%;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;opacity:0;
+}
+.content-card p{font-size:.92rem;line-height:1.55;opacity:.8;font-style:italic;margin-bottom:1.2rem;}
+
+/* ---------- Audio-Player ---------- */
+.audio-player{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;}
+.play-btn{
+  position:relative;width:38px;height:38px;border-radius:50%;border:none;background:var(--tafel-light);
+  color:#08211d;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:transform .15s ease,background-color .4s ease;
+}
+.play-btn:hover{transform:scale(1.08);}
+.play-btn::before{
+  content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--tafel-light);
+  opacity:0;pointer-events:none;animation:pulseRing 2.4s ease-out infinite;
+}
+.play-btn.is-playing::before{animation:none;opacity:0;}
+@keyframes pulseRing{0%{transform:scale(.8);opacity:.6;}70%{transform:scale(1.55);opacity:0;}100%{opacity:0;}}
+.track{flex:1;height:5px;background:rgba(255,255,255,.2);border-radius:3px;overflow:hidden;}
+.track-fill{height:100%;width:0%;background:var(--tafel-light);transition:background-color .4s ease;}
+.time{font-size:.68rem;opacity:.7;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.qr-hint{font-size:.72rem;opacity:.6;margin-top:.3rem;}
+
+@media (max-width:640px){
+  .content-card,.content-card.align-right{left:4%;right:4%;max-width:none;bottom:6%;padding:1.4rem 1.4rem 1.3rem;border-left:3px solid var(--tafel-light);border-right:none;}
+}
+
+/* ---------- Outro + QR-Sektion ---------- */
+.outro{
+  min-height:75vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:.6rem;padding:3.5rem 2rem;
+  background:linear-gradient(180deg,var(--sepia-deep) -60%,var(--ink) 55%);
+  position:relative;transition:background .4s ease;
+}
+.outro-title{font-family:'Special Elite',monospace;font-size:1.1rem;letter-spacing:1px;}
+.outro-sub{opacity:.55;font-size:.85rem;max-width:420px;}
+.outro-autoren{opacity:.45;font-size:.72rem;letter-spacing:.5px;}
+.qr-section{margin-top:2.8rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;max-width:560px;position:relative;z-index:8;}
+.qr-section h2{font-weight:700;font-size:1.35rem;}
+.qr-intro{font-size:.85rem;opacity:.7;text-align:center;line-height:1.55;}
+.qr-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem;margin-top:.6rem;}
+
+/* QR-Karten wie angepinnte Polaroids */
+.qr-card{
+  position:relative;background:var(--paper);border-radius:6px;padding:1.1rem 1rem .85rem;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+  transform:rotate(-2deg);
+  transition:transform .2s ease,box-shadow .2s ease,background-color .4s ease;
+}
+.qr-card:nth-child(even){transform:rotate(1.6deg);}
+.qr-card::before{ /* Pinnnadel */
+  content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%);
+  width:14px;height:14px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#F0B9BF,var(--rose) 55%,var(--rose-deep));
+  box-shadow:0 3px 5px rgba(0,0,0,.4);
+}
+.qr-card:hover{transform:rotate(0deg) translateY(-5px);box-shadow:0 16px 32px rgba(0,0,0,.4);}
+.qr-code{width:120px;height:120px;}
+.qr-label{font-family:'Special Elite',monospace;font-size:.78rem;color:var(--ink);letter-spacing:1px;transition:color .4s ease;}
+.qr-note{font-size:.72rem;opacity:.5;text-align:center;max-width:400px;}
+
+/* ---------- Drucken: nur die QR-Karten, sauber auf Weiß ---------- */
+@media print{
+  body{background:#fff !important;color:#000 !important;}
+  .site-header,.preview-badge,.theme-switcher,.hero,.seam,#stations,
+  .outro-title,.outro-sub,.qr-note,.site-footer{display:none !important;}
+  .outro{background:#fff !important;min-height:auto;padding:1cm 0;}
+  .qr-section{max-width:none;}
+  .qr-intro{color:#000;opacity:1;}
+  .qr-card,.qr-card:nth-child(even){
+    background:#fff;transform:none;box-shadow:none;
+    border:1.5px solid #000;border-radius:0;padding:1.2cm;
+  }
+  .qr-card::before{display:none;}
+  .qr-label{color:#000;font-size:1rem;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-etikett{animation:none;}
+  .play-btn::before{animation:none;}
+}
