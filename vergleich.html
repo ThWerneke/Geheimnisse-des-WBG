@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damals &amp; Heute — Geheimnisse des WBG</title>
+<meta name="description" content="Alte und neue Aufnahmen des Walburgisgymnasiums & der Walburgisrealschule im direkten Vergleich per Schieberegler.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>
+.page-hero{
+  min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 2.5rem;
+  background:linear-gradient(200deg,var(--ink) 10%,var(--tafel) 150%);
+}
+.page-hero .eyebrow{font-weight:600;font-size:.72rem;letter-spacing:3px;color:var(--tafel-light);margin-bottom:.8rem;}
+.page-hero h1{font-family:'Special Elite',monospace;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);}
+.page-hero p{margin-top:1rem;max-width:520px;opacity:.75;font-size:.9rem;line-height:1.6;}
+
+.vergleiche{max-width:860px;margin:0 auto;padding:3.5rem 1.4rem 5.5rem;display:flex;flex-direction:column;gap:4rem;}
+
+.vgl{display:flex;flex-direction:column;gap:1rem;}
+.vgl-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.vgl-head h2{font-weight:700;font-size:1.35rem;}
+
+/* ---------- Schieberegler-Komponente ---------- */
+.slider{
+  position:relative;aspect-ratio:var(--vgl-ratio,16 / 9);border-radius:10px;overflow:hidden;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);user-select:none;touch-action:none;
+  border:3px solid var(--paper);
+}
+.slider .ebene{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  background:var(--paper);
+}
+.slider .label{
+  position:absolute;top:5%;font-size:.7rem;letter-spacing:2px;padding:.35rem .7rem;border-radius:3px;z-index:3;
+}
+.slider .label-damals{left:4%;font-family:'Special Elite',monospace;background:var(--caption-old-bg);color:var(--paper);}
+.slider .label-heute{right:4%;font-weight:600;background:var(--caption-modern-bg);color:var(--tafel-light);}
+.slider .griff-linie{
+  position:absolute;top:0;bottom:0;width:3px;background:var(--paper);z-index:4;
+  box-shadow:0 0 12px rgba(0,0,0,.6);transform:translateX(-50%);pointer-events:none;
+}
+.slider .griff{
+  position:absolute;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  width:44px;height:44px;border-radius:50%;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  box-shadow:0 6px 16px rgba(0,0,0,.5);
+  color:var(--ink);font-weight:700;font-size:.8rem;
+}
+/* Der echte (unsichtbare) Regler liegt über allem — Tastatur & Screenreader nutzbar */
+.slider input[type=range]{
+  position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:6;margin:0;
+}
+.vgl .beschreibung{font-size:.86rem;line-height:1.6;opacity:.7;}
+.vgl .beschreibung:empty{display:none;}
+
+/* ---------- Abschluss: Zusammenfassung + Bildnachweise ---------- */
+.vgl-abschluss{max-width:860px;margin:0 auto;padding:0 1.4rem 4.5rem;display:flex;flex-direction:column;gap:1.2rem;}
+.vgl-abschluss p{font-size:.9rem;line-height:1.7;opacity:.75;}
+.vgl-abschluss .bildnachweis{
+  font-family:'Special Elite',monospace;font-size:.7rem;letter-spacing:.5px;
+  opacity:.5;border-top:1px solid rgba(255,255,255,.15);padding-top:1.2rem;line-height:1.8;
+}
+.vgl.is-portrait{width:min(100%,560px);align-self:center;}
+@media (max-width:640px){
+  .vergleiche{gap:3rem;}
+  .vgl-head h2{font-size:1.15rem;}
+  .slider .label{font-size:.6rem;letter-spacing:1.4px;}
+}
+</style>
+</head>
+<body data-theme="wbg">
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-logo"><img src="assets/img/smmp-bildmarke.jpg" alt="SMMP-Bildmarke"></span>
+    <span class="brand-text">
+      <span class="brand-title">Geheimnisse des WBG</span>
+      <span class="brand-sub">Walburgisgymnasium · Walburgisrealschule</span>
+    </span>
+  </a>
+  <nav class="crumbs"><a href="index.html">← Alle Themen</a></nav>
+</header>
+
+<div class="theme-switcher"></div>
+
+<section class="riss-hero">
+  <div class="riss-sticky">
+    <div class="riss-ebene riss-neu"></div>
+    <div class="riss-kante"></div>
+    <div class="riss-wrap"><div class="riss-canvas"><div class="riss-ebene riss-alt"></div></div></div>
+    <div class="riss-inhalt">
+      <div class="eyebrow">AKTE 06 · VERGLEICH</div>
+      <h1>Damals &amp; Heute</h1>
+      <p>Zieht den Griff über das Bild: links das WBG von damals, rechts dieselbe Ansicht heute.</p>
+    </div>
+    <div class="scroll-hint">↓ SCROLLEN</div>
+  </div>
+</section>
+
+<div class="seam"><div class="seam-ornament"></div></div>
+
+<main class="vergleiche" id="vergleiche"></main>
+
+<section class="vgl-abschluss">
+  <p>Zusammenfassend lässt sich sagen, dass das alte Gebäude mit seiner Struktur erhalten ist und von Neubauten und Modernisierung ergänzt wurde.</p>
+  <p class="bildnachweis">Autoren: M.&nbsp;L.&nbsp;Blach, P.&nbsp;X.&nbsp;Gailer &amp; M.&nbsp;Küchler<br>
+  Bildnachweise — Fotos früher: Schularchiv · Fotos heute: L.&nbsp;Kraus, C.&nbsp;A.&nbsp;Palhinhas Neves, P.&nbsp;X.&nbsp;Gailer, M.&nbsp;L.&nbsp;Blach</p>
+</section>
+
+<footer class="site-footer">
+  <img class="footer-logo" src="assets/img/smmp-logo.jpg" alt="SMMP — Schwestern der heiligen Maria Magdalena Postel">
+  <p>Ein Projekt der Projektwoche am Walburgisgymnasium &amp; der Walburgisrealschule.</p>
+  <p class="footer-note">Schulen der Schwestern der heiligen Maria Magdalena Postel (SMMP)</p>
+  <p class="footer-note">Projektleitung: C. Jost &amp; T. Werneke</p>
+  <nav class="footer-legal"><a href="rechtliches.html#impressum">Impressum</a><span>·</span><a href="rechtliches.html#datenschutz">Datenschutz</a></nav>
+</footer>
+
+<script>
+/* Jedes JPEG enthält beide Aufnahmen. Da die Trennkante je Datei an
+   einer anderen Stelle liegt, werden die beiden pixelgenauen Bereiche
+   als SVG-Ausschnitte derselben Originaldatei angezeigt. Schmale helle
+   Zwischenstege sind über linksBreite/rechtsStart ausgeschlossen. */
+var VERGLEICHE = [
+  {
+    titel: 'Der Wohn- und Unterrichtsraum',
+    bild: 'assets/img/vergleich/Image (3).jpeg',
+    breite: 2015,
+    hoehe: 814,
+    linksBreite: 1120,
+    rechtsStart: 1124,
+    text: ''
+  },
+  {
+    titel: 'Schulgebäude und Parkplatz',
+    bild: 'assets/img/vergleich/Image (4).jpeg',
+    breite: 2328,
+    hoehe: 1000,
+    linksBreite: 1216,
+    rechtsStart: 1216,
+    text: 'Das Walburgisgymnasium, welches 1919 als ein katholisches Lyzeum in Menden eröffnet wurde, richtete den Unterricht zunächst in gemieteten Räumen aus. 1931 wird die Schule zum Walburgis-Lyzeum und zieht in das neu erbaute Schulgebäude, welches bis heute als Altbau am Schwitter Weg erhalten und benutzt wird.'
+  },
+  {
+    titel: 'Der Tennis- und Sportplatz',
+    bild: 'assets/img/vergleich/Image (5).jpeg',
+    breite: 2129,
+    hoehe: 880,
+    linksBreite: 1079,
+    rechtsStart: 1079,
+    text: 'Im Außenbereich der Schule lassen sich ebenfalls noch alte Bestandteile wiedererkennen. Der damalige Tennisplatz ist heute ein Sportplatz und wird vielseitig genutzt. Der Teich und der Schulhof sind heute noch erhalten, doch im Park lassen sich Unterschiede erkennen. Es gibt nicht mehr alle Wege und Beete, die damals errichtet wurden. Außerdem ist das Gelände heute von großen Bäumen geprägt.'
+  },
+  {
+    titel: 'Das große Kirchenfenster',
+    bild: 'assets/img/vergleich/Image (6).jpeg',
+    breite: 1416,
+    hoehe: 1096,
+    linksBreite: 658,
+    rechtsStart: 658,
+    text: ''
+  },
+  {
+    titel: 'Der Eingang der Walburgiskirche',
+    bild: 'assets/img/vergleich/Image (9).jpeg',
+    breite: 1934,
+    hoehe: 847,
+    linksBreite: 1041,
+    rechtsStart: 1041,
+    text: ''
+  },
+  {
+    titel: 'Die Fassade des Hauptgebäudes',
+    bild: 'assets/img/vergleich/Image (10).jpeg',
+    breite: 2096,
+    hoehe: 820,
+    linksBreite: 1125,
+    rechtsStart: 1125,
+    text: 'Die Außenfassade des Altbaus macht den Denkmalschutz deutlich, denn bis auf Ergänzungen von neuen Sicherheitsmaßnahmen, wie zum Beispiel des Brandschutzes, kann man an der Außenwand und an den Fenstern und dessen Anordnung erkennen, dass bei Sanierungen die Grundstruktur beibehalten wird.'
+  },
+  {
+    titel: 'Der Grundstein',
+    bild: 'assets/img/vergleich/Image (11).jpeg',
+    breite: 1447,
+    hoehe: 1060,
+    linksBreite: 721,
+    rechtsStart: 721,
+    text: 'Der Grundstein mit der Inschrift des Christusmonogramms, auch Chi-Rho genannt, ist eines der ältesten Symbole des Christentums und ist bis heute noch zu finden. Es besteht aus den griechischen Buchstaben Chi und Rho, den ersten beiden Buchstaben des griechischen Wortes Christos. Die Inschrift A.D. 1930 des Grundsteines bedeutet „Anno Domini 1930“, übersetzt „im Jahre des Herrn 1930“, und verweist auf das Baujahr beziehungsweise die Grundsteinlegung des Gebäudes.'
+  },
+  {
+    titel: 'Die Marienfigur über dem Kirchenportal',
+    bild: 'assets/img/vergleich/Image (12).jpeg',
+    breite: 1552,
+    hoehe: 1104,
+    linksBreite: 783,
+    rechtsStart: 789,
+    text: 'Am Gebäude sind bis heute Figuren erhalten, wie zum Beispiel eine Figur der heiligen Maria, welche für Sicherheit und Schutz der Gläubigen oder Schüler steht und sich bis heute über der Tür der Schule befindet.'
+  },
+  {
+    titel: 'Der Kartenraum',
+    bild: 'assets/img/vergleich/Image (13).jpeg',
+    breite: 1440,
+    hoehe: 1254,
+    linksBreite: 796,
+    rechtsStart: 800,
+    text: 'Im Innenraum haben sich Klassenräume modernisiert und sich digital aufgerüstet, aber die Struktur und Fenster sind immer noch gut zu erkennen.'
+  },
+  {
+    titel: 'Das Schulgelände aus der Luft',
+    bild: 'assets/img/vergleich/Image (14).jpeg',
+    breite: 2205,
+    hoehe: 883,
+    linksBreite: 1132,
+    rechtsStart: 1132,
+    text: 'Aufgrund dessen, dass das gesamte Gebäude heute unter Denkmalschutz steht, lassen sich viele Parallelen von früher zu heute finden, bis auf dass Raumnutzungen geändert wurden und Neubauten, wie zum Beispiel der Fach- und Klassentrakt sowie die Sporthalle, nachträglich gebaut wurden. Um die Schule herum befanden sich früher nur Felder und Wiesen, heute ist das Gelände von Bäumen, Straßen und Häusern umgeben.'
+  },
+  {
+    titel: 'Vom Schwimmbad zum Bücherlager',
+    bild: 'assets/img/vergleich/Image (15).jpeg',
+    breite: 2282,
+    hoehe: 982,
+    linksBreite: 1150,
+    rechtsStart: 1151,
+    text: ''
+  }
+];
+
+var host = document.getElementById('vergleiche');
+
+VERGLEICHE.forEach(function(v){
+  var rechtsBreite = v.breite - v.rechtsStart;
+  var el = document.createElement('section');
+  el.className = 'vgl';
+  el.innerHTML =
+    '<div class="vgl-head">' +
+      '<h2>' + v.titel + '</h2>' +
+    '</div>' +
+    '<div class="slider geteilt">' +
+      /* slice statt meet: beide Ausschnitte füllen den Rahmen randlos.
+         Da die Trennkante selten mittig liegt, sind die zwei Ausschnitte
+         unterschiedlich breit — meet würde helle Leerstreifen einpassen,
+         slice beschneidet stattdessen ein paar Randpixel. YMax verankert
+         dabei unten, damit die Bildunterschriften der Scans sichtbar
+         bleiben und nur oben (Himmel/Decke) etwas wegfällt. */
+      '<svg class="ebene heute" viewBox="' + v.rechtsStart + ' 0 ' + rechtsBreite + ' ' + v.hoehe + '" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">' +
+        '<image href="' + v.bild + '" x="0" y="0" width="' + v.breite + '" height="' + v.hoehe + '" preserveAspectRatio="none"></image>' +
+      '</svg>' +
+      '<svg class="ebene damals" viewBox="0 0 ' + v.linksBreite + ' ' + v.hoehe + '" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">' +
+        '<image href="' + v.bild + '" x="0" y="0" width="' + v.breite + '" height="' + v.hoehe + '" preserveAspectRatio="none"></image>' +
+      '</svg>' +
+      '<span class="label label-damals">DAMALS</span>' +
+      '<span class="label label-heute">HEUTE</span>' +
+      '<div class="griff-linie"></div>' +
+      '<div class="griff">⇄</div>' +
+      '<input type="range" min="0" max="100" value="50" aria-label="Vergleich ' + v.titel + ': damals / heute">' +
+    '</div>' +
+    '<p class="beschreibung">' + v.text + '</p>';
+
+  var slider = el.querySelector('.slider');
+  var damals = el.querySelector('.damals');
+  var linie = el.querySelector('.griff-linie');
+  var griff = el.querySelector('.griff');
+  var range = el.querySelector('input[type=range]');
+
+  var ausschnittSumme = v.linksBreite + rechtsBreite;
+  slider.style.setProperty('--vgl-ratio', ausschnittSumme + ' / ' + (v.hoehe * 2));
+  if ((ausschnittSumme / 2) / v.hoehe < .8) el.classList.add('is-portrait');
+
+  function setPos(pct){
+    /* An den Endpunkten leicht überziehen — sonst bleibt durch
+       Rundungsfehler ein schmaler Bildstreifen am Rand stehen */
+    var rechts = 100 - pct;
+    if (pct <= 0) rechts = 101;
+    else if (pct >= 100) rechts = -1;
+    damals.style.clipPath = 'inset(0 ' + rechts + '% 0 0)';
+    linie.style.left = pct + '%';
+    griff.style.left = pct + '%';
+  }
+  range.addEventListener('input', function(){ setPos(Number(range.value)); });
+  setPos(50);
+
+  host.appendChild(el);
+});
+</script>
+<script src="assets/js/common.js?v=2"></script>
+</body>
+</html>
