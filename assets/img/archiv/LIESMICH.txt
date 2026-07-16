@@ -1,0 +1,1 @@
+Archivbilder hier ablegen (JPG/PNG) und in archiv.html im ARCHIV-Datenblock eintragen.
